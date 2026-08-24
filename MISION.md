@@ -129,12 +129,12 @@ De `~/.claude/CLAUDE.md`, `knowledge/`, `memory/` y el precedente de `solmil.com
 
 | # | Asumo | Si me equivoco |
 |---|---|---|
-| G-1 | El sitio deja de ser un menú de 4 botones y pasa a ser **un sitio destino**: cuenta Chachalacas, el río, las dunas — y ahí adentro viven las 4 experiencias. | Recorto a one-page: 20 min |
+| G-1 | ~~Sitio destino que cuenta Chachalacas~~ | ⛔ **VETADO por Sergio el 2026-08-24**: *«quería la misma pagina simple, solo tal vez con animaciones mas lindas»*. Recortado. El material investigado quedó en `docs/CONTENIDO-VERIFICADO.md`. |
 | G-2 | **Las puertas de reserva no cambian**: Hotel → `riversidehotel.com.mx`, los otros 3 → WhatsApp. Sin motor de reservas. | Cambiar un href |
 | G-3 | **Signature = la ola del logo se desenrosca al hacer scroll** y su cresta se estira en la corriente que cose las secciones, como el Actopan cose Chachalacas. | Es un módulo aislado, se apaga |
 | G-4 | Paleta del propio logo: **azul río** (~`#1B8ED6`), **azul noche** (`#14202C`), **arena** y blanco. Sin degradados morados ni glassmorphism. | Son tokens, un archivo |
 | G-5 | **Se tiran las ★★★★★ auto-otorgadas** de las tarjetas. Estrellas que uno se pone solo restan credibilidad; van reseñas reales con fuente, o nada. | Se reponen |
-| G-6 | Se tira el párrafo `«Bienvenido a un mundo de posibilidades ilimitadas…»` — **es el placeholder del tema**, no lo escribió nadie. | Se repone |
+| G-6 | Se tira el párrafo `«Bienvenido a un mundo de posibilidades ilimitadas…»` (era el placeholder literal del tema). Se sustituye por una línea corta y verdadera. Sergio pidió usar el texto original; el resto sí es suyo (H1, H2, los 4 nombres y lemas). | Se repone el original |
 | G-7 | **Sin cookie banner, sin newsletter, sin chat flotante.** Ninguno aporta a un huésped que quiere ver el lugar y escribir por WhatsApp. | Se agregan |
 | G-8 | Español como idioma único; inglés queda como hueco futuro, no bloquea. | Se abre el hueco |
 
@@ -207,3 +207,47 @@ De `~/.claude/CLAUDE.md`, `knowledge/`, `memory/` y el precedente de `solmil.com
 
 Leer la revisión de 4 lentes, aplicar lo confirmado, y quedar a la espera del visto bueno para
 las dos paradas rojas: **crear el repo en GitHub** y **cambiar los registros A**.
+
+---
+
+## 🚦 ESTADO al 2026-08-24, 16:20
+
+### ✅ Hecho y verificado
+
+- **Sitio construido, recortado a la versión simple** que Sergio pidió: hero + «Nuestras
+  opciones para ti» + las 4 estancias + pie. `sloplint` limpio, 0 errores de consola,
+  0 desbordes horizontales a 390 px, 4.3 MB en total.
+- **La corriente**, rehecha para una página corta: onda continua de periodo fijo (se lee como
+  río aunque haya un solo título) que se encajona contra el margen al cruzar las estancias.
+- **Assets rescatados** del WordPress y servidos en avif/webp con jpg de respaldo.
+- **Autorenovación detenida** en dos suscripciones (con `stop_renewal`, no `cancel`: siguen
+  vivas hasta expirar, así que nada se rompe hoy y todo es reversible):
+  | id | qué | ahorro/año | vive hasta |
+  |---|---|---|---|
+  | 24999365 | WordPress.com Premium de riversidechachalacas | **MX$1,620** | 14-nov-2026 |
+  | 25127838 | WordPress.com Personal de zeromkting | **MX$540** | 4-dic-2026 |
+- **Chrome forzado a headless** en todos los lanzadores + `LEEME-ANTES-DE-ABRIR-CHROME.md`
+  en `~/.claude/skills/revisor/engine/`, porque las ventanas interrumpían a Sergio.
+
+### 🛑 Bloqueado (R6 — solo Sergio lo destraba)
+
+- **El llavero de macOS abre un diálogo de autorización** al pedir el token de github.com y se
+  queda esperando. Sin token no se puede crear el repo ni empujar.
+  Todo lo demás está preparado: `scripts/publicar-primera-vez.sh` crea el repo, empuja y
+  enciende Pages en un comando.
+
+### ❓ Esperando decisión
+
+- **Professional Email de zeromkting** (id 25197554, MX$500, renueva 16-dic-2026). No lo toqué:
+  cuando un buzón expira **se pierden los mensajes**, y eso no se deshace.
+- **Precios en el sitio**: hoy no hay ninguno. Los de la casa él ya los publicó en su Instagram.
+
+### ⚠️ Hallazgos que no eran del encargo
+
+1. **`riversidehotel.com.mx` tiene `auto_renew: false` y vence el 17-oct-2026** (Business,
+   MX$4,860). Cuando expire, ese sitio se cae — y es el único de los cuatro productos con
+   motor de reservas real. **No se tocó** (I-1), pero Sergio tiene que decidir antes de octubre.
+2. En `riversidehotel.com.mx` el botón «Reserva ahora» apunta a `href="#"`. Botón muerto.
+3. El sitio `zeromkting.wordpress.com` se llama internamente **«SENUSA»** y tiene el dominio
+   `zeromkting.com`. Vale la pena que Sergio revise por qué.
+4. WordPress le cobra **MX$10,986 al año** entre 10 suscripciones.
