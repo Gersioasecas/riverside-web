@@ -601,3 +601,8 @@
 
 /* con la página corta, el hero y el primer título no necesitan tanto aire */
 #estancias { padding-block-start: clamp(3.5rem, 2rem + 5vw, 6.5rem); }
+
+/* Los iconos del hero van sobre foto: medido, el peor fondo daba 3.87:1.
+   Pasa el criterio gráfico (3:1) pero se lee mejor con una sombra que los
+   despegue de la arena clara. Misma sombra que lleva el logo. */
+.social--hero a { filter: drop-shadow(0 1px 6px rgb(8 19 28 / 0.75)); }
