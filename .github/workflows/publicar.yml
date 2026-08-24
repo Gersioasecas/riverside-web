@@ -1,0 +1,38 @@
+# Publica codigo-puro/ en GitHub Pages en cada push a main.
+# No necesita secretos: usa el GITHUB_TOKEN de la propia acción.
+name: Publicar sitio
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.despliegue.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verificar que el CNAME no se perdió
+        run: |
+          test -f codigo-puro/CNAME || { echo "::error::falta codigo-puro/CNAME — el dominio se caería"; exit 1; }
+          grep -q "riversidechachalacas.com.mx" codigo-puro/CNAME || { echo "::error::CNAME con dominio equivocado"; exit 1; }
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: codigo-puro
+      - id: despliegue
+        uses: actions/deploy-pages@v4

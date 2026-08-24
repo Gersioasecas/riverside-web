@@ -1,0 +1,133 @@
+/* ============================================================================
+   RIVERSIDE CHACHALACAS — tokens
+   Los colores NO se eligieron: se midieron del logo y de las fotos del lugar.
+   Origen de cada valor documentado abajo. Nada de valores mágicos fuera de aquí.
+   ========================================================================== */
+
+:root {
+  /* --- primitivos: agua ------------------------------------------------ */
+  /* #1080D0 es el azul literal del logo «Riverside Adventure» (medido). */
+  --rio-950: #08131c;
+  --rio-900: #0c1b27;
+  --rio-800: #123449;
+  --rio-700: #17496a;
+  --rio-600: #0f66a8;
+  --rio-500: #1080d0;   /* ← marca */
+  --rio-400: #4aa3e0;
+  --rio-300: #7fb6d6;   /* agua del río en las fotos (H199 S48 L70) */
+  --rio-200: #b9d8e8;
+  --rio-100: #dceaf2;
+
+  /* --- primitivos: tierra ---------------------------------------------- */
+  /* arena y madera medidas en las fotos del hotel y la palapa */
+  --arena-600: #b99a76;
+  --arena-500: #d8c0a8;  /* arena (H30 S38 L75) */
+  --arena-300: #ecdfd0;
+  --arena-100: #f7f1e9;
+  --arena-50:  #fbf8f4;
+  --teja-600:  #8a5a40;  /* madera y teja del restaurante */
+  --teja-500:  #a56b4b;
+  --palma-700: #4a6030;  /* vegetación (H90 S33 L28) */
+
+  --blanco: #ffffff;
+  --tinta-900: #17232c;
+  --tinta-600: #4d5f6c;
+  --tinta-400: #7d8d99;
+
+  /* --- semánticos ------------------------------------------------------ */
+  --fondo:            var(--arena-50);
+  --fondo-alt:        var(--arena-100);
+  --fondo-hondo:      var(--rio-900);   /* secciones oscuras */
+  --fondo-hondo-alt:  var(--rio-950);
+
+  --texto:            var(--tinta-900);
+  --texto-suave:      var(--tinta-600);
+  --texto-tenue:      var(--tinta-400);
+  --texto-invertido:  var(--arena-100);
+  --texto-invertido-suave: #a9c1d1;
+
+  --marca:            var(--rio-500);
+  --marca-honda:      var(--rio-700);
+  --marca-clara:      var(--rio-300);
+  --acento-calido:    var(--teja-600);
+
+  --linea:            #e3d9cd;
+  --linea-honda:      #1d3d54;
+
+  /* --- tipografía ------------------------------------------------------ */
+  --fuente-display: 'Newsreader', 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+  --fuente-texto:   'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+
+  /* escala mayor tercera (1.25) fluida entre 380px y 1440px */
+  --paso--2: clamp(0.72rem, 0.70rem + 0.10vw, 0.78rem);
+  --paso--1: clamp(0.84rem, 0.81rem + 0.15vw, 0.94rem);
+  --paso-0:  clamp(1.00rem, 0.96rem + 0.20vw, 1.13rem);
+  --paso-1:  clamp(1.20rem, 1.13rem + 0.32vw, 1.41rem);
+  --paso-2:  clamp(1.44rem, 1.32rem + 0.52vw, 1.76rem);
+  --paso-3:  clamp(1.73rem, 1.54rem + 0.82vw, 2.20rem);
+  --paso-4:  clamp(2.07rem, 1.78rem + 1.25vw, 2.75rem);
+  --paso-5:  clamp(2.49rem, 2.03rem + 1.94vw, 3.44rem);
+  --paso-6:  clamp(2.99rem, 2.28rem + 2.98vw, 4.30rem);
+  --paso-7:  clamp(3.58rem, 2.48rem + 4.60vw, 5.37rem);
+
+  --peso-normal: 400;
+  --peso-medio: 500;
+  --peso-fuerte: 700;
+
+  --alto-apretado: 1.06;
+  --alto-titulo: 1.14;
+  --alto-texto: 1.62;
+
+  --track-ancho: 0.18em;   /* para los rótulos en versalitas */
+  --track-titulo: -0.015em;
+
+  /* --- espacio: escala de 4px ----------------------------------------- */
+  --e-1: 0.25rem;  --e-2: 0.5rem;   --e-3: 0.75rem;  --e-4: 1rem;
+  --e-5: 1.5rem;   --e-6: 2rem;     --e-7: 3rem;     --e-8: 4rem;
+  --e-9: 6rem;     --e-10: 8rem;    --e-11: 12rem;
+
+  --seccion-y: clamp(4.5rem, 3rem + 6vw, 9rem);
+  --margen-x:  clamp(1.25rem, 0.5rem + 3vw, 4rem);
+
+  --ancho-max: 1240px;
+  --ancho-texto: 62ch;
+
+  /* --- forma ----------------------------------------------------------- */
+  /* radio contenido: el motivo de la marca es el ángulo del A-frame, no la píldora */
+  --radio-1: 2px;
+  --radio-2: 4px;
+  --radio-3: 8px;
+  --radio-redondo: 999px;
+
+  --sombra-1: 0 1px 2px rgb(12 27 39 / 0.06), 0 2px 6px rgb(12 27 39 / 0.05);
+  --sombra-2: 0 2px 4px rgb(12 27 39 / 0.05), 0 8px 24px rgb(12 27 39 / 0.08);
+  --sombra-3: 0 4px 8px rgb(12 27 39 / 0.06), 0 18px 48px rgb(12 27 39 / 0.12);
+
+  /* --- movimiento ------------------------------------------------------
+     Emil Kowalski: <80ms se percibe instantáneo · 100-160ms el feedback de
+     presión · ease-out con nombre · CERO bounce, CERO elastic.
+     El agua no rebota: fluye y la fricción la detiene.                    */
+  --t-instante: 70ms;
+  --t-presion: 130ms;
+  --t-rapido: 220ms;
+  --t-medio: 380ms;
+  --t-lento: 640ms;
+  --t-agua: 1100ms;
+
+  --curva-salida:  cubic-bezier(0.16, 1, 0.3, 1);      /* quint ease-out */
+  --curva-suave:   cubic-bezier(0.33, 1, 0.68, 1);     /* cubic ease-out */
+  --curva-entrada: cubic-bezier(0.32, 0, 0.67, 0);
+  --curva-corriente: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --z-corriente: 1;
+  --z-contenido: 2;
+  --z-nav: 40;
+  --z-flotante: 50;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --t-instante: 0ms; --t-presion: 0ms; --t-rapido: 0ms;
+    --t-medio: 0ms; --t-lento: 0ms; --t-agua: 0ms;
+  }
+}

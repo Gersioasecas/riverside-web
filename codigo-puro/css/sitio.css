@@ -1,0 +1,603 @@
+/* ============================================================================
+   SITIO — composición. La retícula va sobria a propósito: toda la sorpresa
+   vive en la corriente.
+   ========================================================================== */
+
+/* ══ la corriente ═══════════════════════════════════════════════════════════
+   Vive detrás del contenido, a lo largo de TODO el documento. */
+.corriente {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  z-index: var(--z-corriente);
+  pointer-events: none;
+  overflow: visible;
+}
+
+.corriente__cauce {
+  stroke: var(--rio-500);
+  stroke-opacity: 0.10;
+  stroke-width: 1;
+  stroke-linecap: round;
+}
+
+.corriente__agua {
+  stroke: url(#caudal);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 6px rgb(16 128 208 / 0.30));
+}
+
+.corriente__cabeza { opacity: 0; transition: opacity var(--t-medio) var(--curva-suave); }
+.corriente__halo { fill: var(--rio-500); fill-opacity: 0.13; }
+.corriente__gota { fill: var(--rio-500); }
+
+/* El agua corre POR DEBAJO del contenido, nunca encima de una foto.
+   En los tramos de fondo hondo el río se sumerge y reaparece al salir —
+   que es lo que hace un río cuando se mete bajo un puente. El título de
+   esos tramos se moja igual: el subrayado no depende de ver el trazo. */
+.seccion, .hero, .pie { position: relative; z-index: var(--z-contenido); }
+
+/* ══ navegación ════════════════════════════════════════════════════════════ */
+.nav {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline: 0;
+  z-index: var(--z-nav);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--e-4);
+  padding: var(--e-3) var(--margen-x);
+  color: var(--blanco);
+  transition:
+    background-color var(--t-medio) var(--curva-suave),
+    color var(--t-medio) var(--curva-suave),
+    box-shadow var(--t-medio) var(--curva-suave),
+    padding var(--t-medio) var(--curva-suave);
+}
+
+/* al salir del hero la barra se posa: el fondo aparece porque hay algo detrás */
+.nav.esta-posada {
+  background: rgb(251 248 244 / 0.88);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  color: var(--texto);
+  box-shadow: 0 1px 0 var(--linea);
+  padding-block: var(--e-2);
+}
+
+.nav__marca {
+  display: flex;
+  align-items: center;
+  gap: var(--e-3);
+  text-decoration: none;
+  min-width: 0;
+}
+.nav__marca img {
+  width: clamp(30px, 3.4vw, 40px);
+  height: auto;
+  transition: filter var(--t-medio) var(--curva-suave);
+}
+.nav.esta-posada .nav__marca img {
+  /* el logo es blanco: sobre el fondo claro se tiñe del azul de marca */
+  filter: brightness(0) saturate(100%) invert(30%) sepia(84%) saturate(1900%) hue-rotate(184deg) brightness(92%) contrast(92%);
+}
+
+.nav__nombre {
+  font-family: var(--fuente-display);
+  font-size: var(--paso--1);
+  font-weight: var(--peso-fuerte);
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+  display: flex;
+  flex-direction: column;
+}
+.nav__nombre em {
+  font-style: normal;
+  font-family: var(--fuente-texto);
+  font-weight: var(--peso-normal);
+  font-size: 0.66em;
+  letter-spacing: var(--track-ancho);
+  text-transform: uppercase;
+  opacity: 0.72;
+}
+
+.nav__menu { display: flex; align-items: center; gap: clamp(var(--e-4), 2vw, var(--e-6)); }
+.nav__menu > a:not(.boton) {
+  font-size: var(--paso--1);
+  text-decoration: none;
+  padding-block: var(--e-1);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--t-presion) var(--curva-suave), opacity var(--t-presion) var(--curva-suave);
+  opacity: 0.9;
+}
+.nav__menu > a:not(.boton):hover { border-bottom-color: currentColor; opacity: 1; }
+
+.nav:not(.esta-posada) .boton--marca {
+  --boton-fondo: rgb(255 255 255 / 0.14);
+  --boton-borde: rgb(255 255 255 / 0.42);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+.nav:not(.esta-posada) .boton--marca:hover { --boton-fondo: rgb(255 255 255 / 0.26); --boton-borde: var(--blanco); }
+
+@media (max-width: 640px) {
+  .nav__menu > a:not(.boton) { display: none; }
+  .nav__nombre { display: none; }
+}
+
+/* ══ hero ══════════════════════════════════════════════════════════════════ */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: var(--e-10) var(--margen-x) var(--e-9);
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.hero__fondo { position: absolute; inset: 0; z-index: -2; }
+.hero__fondo img { width: 100%; height: 100%; object-fit: cover; }
+
+/* el velo es más denso arriba y abajo, donde vive el texto */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(to bottom, rgb(8 19 28 / 0.62) 0%, rgb(8 19 28 / 0.18) 34%, rgb(8 19 28 / 0.30) 62%, rgb(8 19 28 / 0.80) 100%),
+    radial-gradient(ellipse 70% 55% at 50% 52%, rgb(8 19 28 / 0.42), transparent 72%);
+}
+
+.hero__cuerpo {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: var(--e-5);
+  color: var(--blanco);
+  max-width: 40rem;
+}
+
+.hero__logo {
+  width: clamp(74px, 9vw, 116px);
+  height: auto;
+  filter: drop-shadow(0 3px 18px rgb(8 19 28 / 0.55));
+}
+
+.hero__titulo {
+  font-size: var(--paso-7);
+  font-weight: var(--peso-fuerte);
+  line-height: var(--alto-apretado);
+  letter-spacing: -0.025em;
+  text-shadow: 0 2px 30px rgb(8 19 28 / 0.45);
+}
+
+.hero__bajada {
+  font-size: var(--paso-1);
+  line-height: 1.5;
+  max-width: 30ch;
+  color: rgb(255 255 255 / 0.92);
+  text-shadow: 0 1px 14px rgb(8 19 28 / 0.55);
+}
+
+.hero__explora {
+  display: inline-grid;
+  justify-items: center;
+  gap: var(--e-3);
+  margin-top: var(--e-3);
+  padding: var(--e-2) var(--e-4);
+  font-size: var(--paso--2);
+  font-weight: var(--peso-medio);
+  letter-spacing: var(--track-ancho);
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgb(255 255 255 / 0.9);
+  transition: color var(--t-presion) var(--curva-suave);
+}
+.hero__explora:hover { color: var(--blanco); }
+
+/* la flecha baja y vuelve por el mismo arco — como una gota que cae y se rehace */
+.hero__explora svg { animation: gotear 2.6s var(--curva-suave) infinite; }
+@keyframes gotear {
+  0%, 68%, 100% { transform: translateY(0); opacity: 0.75; }
+  34%           { transform: translateY(6px); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) { .hero__explora svg { animation: none; } }
+
+/* ══ redes ═════════════════════════════════════════════════════════════════ */
+.social { display: flex; gap: var(--e-2); }
+.social a {
+  display: grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: var(--radio-redondo);
+  color: currentColor;
+  transition: background-color var(--t-presion) var(--curva-suave), transform var(--t-instante) var(--curva-suave);
+}
+.social a:hover { background: rgb(255 255 255 / 0.16); }
+.social a:active { transform: translateY(1px); }
+
+.social--hero {
+  position: absolute;
+  inset-block-start: max(var(--e-10), 5.2rem);
+  inset-inline-end: var(--margen-x);
+  color: var(--blanco);
+  flex-direction: column;
+}
+@media (max-width: 640px) {
+  .social--hero { flex-direction: row; inset-block-start: auto; inset-block-end: var(--e-5); inset-inline: 0; justify-content: center; }
+}
+
+.social--pie { margin-top: var(--e-3); color: var(--texto-invertido-suave); }
+.social--pie a:hover { background: rgb(255 255 255 / 0.10); color: var(--blanco); }
+
+/* ══ secciones ═════════════════════════════════════════════════════════════ */
+.seccion { position: relative; padding-block: var(--seccion-y); }
+
+.seccion--honda {
+  background: var(--fondo-hondo);
+  color: var(--texto-invertido);
+}
+.seccion--honda .titulo { color: var(--blanco); }
+
+.titulo {
+  font-size: var(--paso-4);
+  /* fit-content para que la marca de agua mida el TEXTO y no la columna */
+  width: fit-content;
+  max-width: min(20ch, 100%);
+  position: relative;
+  transition: color var(--t-lento) var(--curva-suave);
+}
+.titulo--grande { font-size: var(--paso-6); letter-spacing: -0.022em; }
+
+/* La marca de agua: el nivel que dejó el río al pasar. No es una regla —
+   es irregular, se aclara hacia el final y se desvanece, como una orilla. */
+.titulo[data-moja]::after {
+  content: '';
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-end: -0.18em;
+  height: 3px;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left center;
+  background:
+    linear-gradient(90deg,
+      var(--rio-500) 0%,
+      var(--rio-400) 42%,
+      var(--rio-300) 68%,
+      rgb(127 182 214 / 0.35) 88%,
+      transparent 100%);
+  border-radius: var(--radio-redondo);
+  filter: blur(0.35px);
+  transition: transform var(--t-agua) var(--curva-corriente);
+}
+.titulo.esta-mojado::after { transform: scaleX(1); }
+.seccion--honda .titulo[data-moja]::after {
+  background: linear-gradient(90deg, var(--rio-400) 0%, var(--rio-300) 55%, rgb(127 182 214 / 0.30) 85%, transparent 100%);
+}
+
+.entrada {
+  margin-top: var(--e-5);
+  max-width: 48ch;
+  font-size: var(--paso-1);
+  line-height: 1.55;
+  color: var(--texto-suave);
+}
+.entrada--invertida { color: var(--texto-invertido-suave); }
+
+/* ══ estancias ═════════════════════════════════════════════════════════════ */
+.estancias {
+  display: grid;
+  gap: var(--e-7) var(--e-5);
+  margin-top: var(--e-8);
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  /* suelo opaco: el río pasa por DEBAJO de la fila de estancias en vez de
+     asomarse por los huecos entre tarjetas, que se leía como accidente */
+  background: var(--fondo);
+  padding-block: var(--e-2);
+}
+@media (min-width: 1000px) { .estancias { grid-template-columns: repeat(4, 1fr); } }
+
+.estancia { display: grid; gap: var(--e-4); align-content: start; }
+
+.estancia__foto {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radio-3);
+  background: var(--arena-300);
+  aspect-ratio: 4 / 5;
+}
+.estancia__foto img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform var(--t-lento) var(--curva-salida);
+}
+.estancia:hover .estancia__foto img { transform: scale(1.035); }
+
+/* la cumbrera: el mismo ángulo del logo y de los techos, dibujado en la esquina */
+.estancia__foto::after {
+  content: '';
+  position: absolute;
+  inset-block-start: var(--e-3);
+  inset-inline-start: var(--e-3);
+  width: 26px;
+  height: 18px;
+  border-block-start: 1.5px solid rgb(255 255 255 / 0.85);
+  border-inline-start: 1.5px solid rgb(255 255 255 / 0.85);
+  transform: rotate(45deg) skewX(-12deg);
+  transform-origin: top left;
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.estancia__texto { display: grid; gap: var(--e-2); align-content: start; }
+
+.estancia__nombre {
+  font-size: var(--paso-2);
+  line-height: 1.15;
+}
+
+.estancia__lema {
+  font-family: var(--fuente-display);
+  font-size: var(--paso-0);
+  font-style: italic;
+  color: var(--acento-calido);
+}
+
+.estancia__cuerpo {
+  font-size: var(--paso--1);
+  color: var(--texto-suave);
+  margin-block: var(--e-1) var(--e-2);
+}
+
+.estancia .boton { justify-self: start; }
+
+/* ══ contacto ══════════════════════════════════════════════════════════════ */
+.contacto {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-4);
+  margin-top: var(--e-7);
+}
+.contacto .boton { max-width: 100%; overflow-wrap: anywhere; }
+
+/* ══ pie ═══════════════════════════════════════════════════════════════════ */
+.pie {
+  background: var(--fondo-hondo-alt);
+  color: var(--texto-invertido-suave);
+  padding-block: var(--e-8) var(--e-5);
+  font-size: var(--paso--1);
+}
+
+.pie__reja {
+  display: grid;
+  gap: var(--e-7);
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+}
+
+.pie__marca img { width: 44px; margin-bottom: var(--e-3); }
+.pie__nombre {
+  font-family: var(--fuente-display);
+  font-size: var(--paso-1);
+  font-weight: var(--peso-fuerte);
+  color: var(--blanco);
+  line-height: 1.1;
+}
+.pie__nombre em {
+  display: block;
+  font-style: normal;
+  font-family: var(--fuente-texto);
+  font-size: 0.55em;
+  font-weight: var(--peso-normal);
+  letter-spacing: var(--track-ancho);
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+.pie__lugar { margin-top: var(--e-3); max-width: 22ch; }
+
+.pie__col { display: grid; gap: var(--e-2); align-content: start; }
+.pie__titulo {
+  font-family: var(--fuente-texto);
+  font-size: var(--paso--2);
+  font-weight: var(--peso-medio);
+  letter-spacing: var(--track-ancho);
+  text-transform: uppercase;
+  color: var(--marca-clara);
+  margin-bottom: var(--e-1);
+}
+.pie__col a {
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  transition: color var(--t-presion) var(--curva-suave);
+}
+.pie__col a:hover { color: var(--blanco); }
+
+.pie__linea {
+  max-width: var(--ancho-max);
+  margin: var(--e-8) auto 0;
+  padding: var(--e-4) var(--margen-x) 0;
+  border-top: 1px solid var(--linea-honda);
+  font-size: var(--paso--2);
+  opacity: 0.7;
+}
+
+/* ══ aparición al entrar en cuadro ═════════════════════════════════════════
+   Sube 14px y se asienta. No hay rebote: nada rebota. */
+[data-sube] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity var(--t-lento) var(--curva-suave),
+    transform var(--t-lento) var(--curva-salida);
+}
+[data-sube].esta-dentro { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-sube] { opacity: 1; transform: none; }
+}
+
+/* el escalonado de las cuatro estancias: 60 ms, lo justo para leerse como
+   una secuencia y no como un retraso */
+.estancia:nth-child(1) { transition-delay: 0ms; }
+.estancia:nth-child(2) { transition-delay: 60ms; }
+.estancia:nth-child(3) { transition-delay: 120ms; }
+.estancia:nth-child(4) { transition-delay: 180ms; }
+@media (prefers-reduced-motion: reduce) { .estancia { transition-delay: 0ms !important; } }
+
+/* ══ datos duros de cada estancia ═══════════════════════════════════════════
+   Lo que un huésped busca de verdad: cuántos caben y qué hay. Va antes del
+   botón porque decide la reserva más que el copy. */
+.estancia__datos {
+  display: grid;
+  gap: var(--e-1);
+  margin-block: var(--e-2) var(--e-3);
+  font-size: var(--paso--1);
+  color: var(--texto-suave);
+}
+.estancia__datos li {
+  display: grid;
+  grid-template-columns: 0.85rem 1fr;
+  align-items: start;
+  gap: var(--e-2);
+}
+.estancia__datos li::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  margin-top: 0.62em;
+  border-block-start: 1.4px solid var(--marca);
+  border-inline-start: 1.4px solid var(--marca);
+  transform: rotate(45deg);   /* la cumbrera del A-frame, en miniatura */
+}
+
+/* ══ los hechos del lugar ══════════════════════════════════════════════════ */
+.hechos {
+  display: grid;
+  gap: var(--e-6) var(--e-5);
+  margin-top: var(--e-8);
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+@media (min-width: 1000px) { .hechos { grid-template-columns: repeat(4, 1fr); } }
+
+.hecho {
+  display: grid;
+  gap: var(--e-2);
+  align-content: start;
+  padding-top: var(--e-4);
+  border-top: 1px solid var(--linea-honda);
+}
+.hecho__cifra {
+  font-family: var(--fuente-display);
+  font-size: var(--paso-3);
+  font-weight: var(--peso-fuerte);
+  line-height: 1.08;
+  color: var(--marca-clara);
+}
+.hecho__cifra span {
+  display: block;
+  font-family: var(--fuente-texto);
+  font-size: 0.42em;
+  font-weight: var(--peso-medio);
+  letter-spacing: var(--track-ancho);
+  text-transform: uppercase;
+  color: var(--texto-invertido-suave);
+  margin-top: var(--e-1);
+}
+.hecho__nombre {
+  font-size: var(--paso-0);
+  font-weight: var(--peso-fuerte);
+  color: var(--blanco);
+}
+.hecho__cuerpo { font-size: var(--paso--1); color: var(--texto-invertido-suave); }
+
+.hecho:nth-child(1) { transition-delay: 0ms; }
+.hecho:nth-child(2) { transition-delay: 60ms; }
+.hecho:nth-child(3) { transition-delay: 120ms; }
+.hecho:nth-child(4) { transition-delay: 180ms; }
+
+/* ══ alrededor ═════════════════════════════════════════════════════════════ */
+.cerca {
+  display: grid;
+  gap: 0;
+  margin-top: var(--e-7);
+  background: var(--fondo);   /* suelo opaco: el río pasa por debajo */
+  max-width: 62rem;
+}
+.cerca__item {
+  display: grid;
+  gap: var(--e-2);
+  padding-block: var(--e-5);
+  border-top: 1px solid var(--linea);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 760px) {
+  .cerca__item { grid-template-columns: minmax(11rem, 15rem) 1fr; gap: var(--e-5); align-items: baseline; }
+}
+.cerca__item:last-child { border-bottom: 1px solid var(--linea); }
+.cerca__item h3 { font-size: var(--paso-1); }
+.cerca__item h3 span {
+  font-family: var(--fuente-texto);
+  font-size: 0.6em;
+  font-weight: var(--peso-medio);
+  color: var(--marca);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.cerca__item p { font-size: var(--paso--1); color: var(--texto-suave); max-width: 52ch; }
+
+/* ══ distancias ════════════════════════════════════════════════════════════ */
+.distancias {
+  display: grid;
+  margin-top: var(--e-7);
+  max-width: 40rem;
+}
+.distancias li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--e-4);
+  padding-block: var(--e-4);
+  border-bottom: 1px solid var(--linea-honda);
+}
+.distancias li:first-child { border-top: 1px solid var(--linea-honda); }
+.distancias__que { color: var(--texto-invertido); }
+.distancias__cuanto {
+  font-family: var(--fuente-display);
+  font-size: var(--paso-1);
+  font-weight: var(--peso-fuerte);
+  color: var(--marca-clara);
+  white-space: nowrap;
+}
+
+.nota {
+  margin-top: var(--e-5);
+  font-size: var(--paso--2);
+  color: var(--texto-invertido-suave);
+  opacity: 0.8;
+  max-width: 56ch;
+}
+
+/* ══ botón de caja sobre fondo claro ═══════════════════════════════════════ */
+.boton--linea-caja {
+  --boton-borde: var(--linea);
+  --boton-texto: var(--texto);
+}
+.boton--linea-caja:hover { --boton-borde: var(--marca); --boton-texto: var(--marca-honda); }
+
+/* ══ ritmo en pantalla angosta ═════════════════════════════════════════════
+   Con cuatro estancias en columna, el 4:5 vuelve el scroll interminable.
+   En móvil las fotos se achatan para que el recorrido siga siendo legible. */
+@media (max-width: 640px) {
+  .estancia__foto { aspect-ratio: 5 / 4; }
+  .estancias { gap: var(--e-6) var(--e-4); margin-top: var(--e-6); }
+  .hechos { margin-top: var(--e-6); }
+}
+
+/* dos secciones hondas seguidas no necesitan doble aire en la costura */
+.seccion--honda + .seccion { padding-block-start: calc(var(--seccion-y) * 0.8); }
+.seccion + .seccion--honda { padding-block-start: calc(var(--seccion-y) * 0.9); }
