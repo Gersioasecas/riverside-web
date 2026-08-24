@@ -60,6 +60,7 @@ Antes de crear algo, mira si ya vive aquí.
 | Necesitas… | Vive en | Nunca |
 |---|---|---|
 | Un color, un tamaño de letra, un espacio, una duración | `css/tokens.css` | escribir un hex o un `px` suelto en otro archivo |
+| Azul de marca **para texto o fondo de botón** | `--marca-legible` (`#0d66aa`) | `--marca` (`#1080d0`): es la identidad, y con blanco encima da 4.18:1 — por debajo de AA |
 | Estilo de botón | `css/base.css` (`.boton` + modificadores) | un botón nuevo desde cero |
 | Un tipo de sección | `css/sitio.css` | duplicar la retícula |
 | La animación firma | `js/corriente.js` | una segunda librería de scroll |
@@ -93,7 +94,12 @@ título que el agua toca se queda con una marca de agua debajo, para siempre.
    recalibrarla, no adivinarla.
 4. **`sloplint` marca `numbered-section-markers`**: no vuelvas a poner 01/02/03 como etiquetas.
    Y vigila las rayas — más de dos en el cuerpo del texto y vuelve a saltar.
-5. **`home-1100` y `restaurante-1100` no existen a propósito**: al recortar a 4:5 esas fotos
+5. **`body` NO lleva `overflow-x: hidden`** a propósito: recortaba el SVG de la corriente.
+   Si alguna vez hace falta contener un desborde, arréglese el desborde, no se reponga esa línea.
+6. **Las rutas de recurso son RELATIVAS** (`img/…`, no `/img/…`) para que el sitio cargue igual
+   en el dominio y en la URL de previsualización con subcarpeta. El `404.html` sí las lleva
+   absolutas, porque puede servirse desde cualquier ruta.
+7. **`home-1100` y `restaurante-1100` no existen a propósito**: al recortar a 4:5 esas fotos
    quedan por debajo de 1100px de ancho. El `srcset` ya lo contempla.
 
 ## Correr y probar
@@ -108,5 +114,6 @@ Chrome). Un script propio tiene que vivir en esa carpeta para poder importarlo.
 
 ## Estado
 
-Construido y verificado en local. **Sin publicar**: el repo de GitHub y el cambio de DNS
-esperan el visto bueno de Sergio. Ver `MISION.md` → paradas parqueadas.
+**EN VIVO** en https://riversidechachalacas.com.mx desde el 2026-08-24.
+Repo `Gersioasecas/riverside-web`; `git push` a `main` dispara la acción que publica
+`codigo-puro/`. Detalle del montaje, el DNS y cómo revertir: `MISION.md`.

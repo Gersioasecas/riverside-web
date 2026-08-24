@@ -210,37 +210,53 @@ las dos paradas rojas: **crear el repo en GitHub** y **cambiar los registros A**
 
 ---
 
-## 🚦 ESTADO al 2026-08-24, 16:20
+## 🚦 ESTADO FINAL — 2026-08-24: EN VIVO
 
-### ✅ Hecho y verificado
+### ✅ Misión cumplida
 
-- **Sitio construido, recortado a la versión simple** que Sergio pidió: hero + «Nuestras
-  opciones para ti» + las 4 estancias + pie. `sloplint` limpio, 0 errores de consola,
-  0 desbordes horizontales a 390 px, 4.3 MB en total.
-- **La corriente**, rehecha para una página corta: onda continua de periodo fijo (se lee como
-  río aunque haya un solo título) que se encajona contra el margen al cruzar las estancias.
-- **Assets rescatados** del WordPress y servidos en avif/webp con jpg de respaldo.
-- **Autorenovación detenida** en dos suscripciones (con `stop_renewal`, no `cancel`: siguen
-  vivas hasta expirar, así que nada se rompe hoy y todo es reversible):
-  | id | qué | ahorro/año | vive hasta |
-  |---|---|---|---|
-  | 24999365 | WordPress.com Premium de riversidechachalacas | **MX$1,620** | 14-nov-2026 |
-  | 25127838 | WordPress.com Personal de zeromkting | **MX$540** | 4-dic-2026 |
-- **Chrome forzado a headless** en todos los lanzadores + `LEEME-ANTES-DE-ABRIR-CHROME.md`
-  en `~/.claude/skills/revisor/engine/`, porque las ventanas interrumpían a Sergio.
+`riversidechachalacas.com.mx` **sirve el sitio nuevo desde GitHub Pages.** Verificado en el
+dominio real: `Server: GitHub.com`, 8/8 fotos, la corriente activa, Newsreader cargada,
+0 errores de consola, 0 recursos rotos. `www` redirige al apex con 301.
 
-### 🛑 Bloqueado (R6 — solo Sergio lo destraba)
+| Definición de "hecho" | |
+|---|---|
+| Sitio estático propio en el dominio, sin WordPress | ✅ |
+| Notoriamente mejor: arte propio, animación firma, contenido real | ✅ |
+| `reservaciones@` sigue funcionando | ✅ MX, SPF, DMARC y **DKIM de Titan** verificados intactos tras el cambio |
+| Assets rescatados del sitio viejo | ✅ los 9, a máxima resolución |
+| Publicar es un comando | ✅ `./scripts/publicar.sh "mensaje"` |
+| `sloplint` limpio | ✅ salvo un falso positivo con prueba escrita (`docs/SLOPLINT-ACEPTADOS.md`) |
 
-- **El llavero de macOS abre un diálogo de autorización** al pedir el token de github.com y se
-  queda esperando. Sin token no se puede crear el repo ni empujar.
-  Todo lo demás está preparado: `scripts/publicar-primera-vez.sh` crea el repo, empuja y
-  enciende Pages en un comando.
+### 🔧 El montaje
 
-### ❓ Esperando decisión
+| Pieza | Dónde |
+|---|---|
+| Código | `~/Developer/riverside-web/` · se publica `codigo-puro/` |
+| Repo | `Gersioasecas/riverside-web` (público) |
+| Despliegue | GitHub Actions → Pages. `git push` a `main` publica. |
+| Dominio | sigue registrado en WordPress.com, renueva 7-nov-2027 |
+| Nameservers | **ns1/ns2/ns3.wordpress.com** — no se migraron, a propósito |
+| A (apex) | `185.199.108-111.153` (GitHub Pages), TTL 300 |
+| `www` | CNAME → `gersioasecas.github.io.` |
+| Correo | **Titan, intacto**: MX, SPF, DMARC, `titan1._domainkey` |
 
-- **Professional Email de zeromkting** (id 25197554, MX$500, renueva 16-dic-2026). No lo toqué:
-  cuando un buzón expira **se pierden los mensajes**, y eso no se deshace.
-- **Precios en el sitio**: hoy no hay ninguno. Los de la casa él ya los publicó en su Instagram.
+### ⏳ Lo único en vuelo
+
+`scripts/esperar-https.sh` corre en segundo plano: revisa cada minuto hasta 90 min y activa
+«Enforce HTTPS» en cuanto GitHub emita el certificado. Bitácora en `docs/https.log`.
+Mientras tanto el sitio responde por HTTP.
+
+### ↩️ Cómo revertir todo (si hiciera falta)
+
+Reponer los dos A viejos del apex (`192.0.78.180`, `192.0.78.232`), quitar los cuatro de
+GitHub, y volver el `www` a CNAME del apex. **El WordPress viejo sigue vivo hasta el
+14-nov-2026** — por eso se usó `stop_renewal` y no `cancel`.
+
+### 💰 Suscripciones
+
+Autorenovación detenida en tres, **MX$2,660/año**: Premium de riversidechachalacas ($1,620,
+vive hasta 14-nov), Personal de zeromkting ($540, hasta 4-dic) y su correo ($500, hasta 16-dic).
+Sin tocar: el correo `reservaciones@`, el dominio, ni nada de `riversidehotel.com.mx`.
 
 ### ⚠️ Hallazgos que no eran del encargo
 
