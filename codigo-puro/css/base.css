@@ -25,7 +25,9 @@ body {
   font-synthesis-weight: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  /* sin overflow-x:hidden a propósito: recortaba el SVG de la corriente, que
+     es absoluto y abarca todo el documento. Verificado que nada desborda a
+     320, 390, 1440 y 2560 px de ancho. */
 }
 
 img, picture, svg, video { display: block; max-width: 100%; }
@@ -118,11 +120,11 @@ p { text-wrap: pretty; }
 .boton:active { transform: translateY(1px); }
 
 .boton--marca {
-  --boton-fondo: var(--marca);
+  --boton-fondo: var(--marca-legible);
   --boton-texto: var(--blanco);
-  --boton-borde: var(--marca);
+  --boton-borde: var(--marca-legible);
 }
-.boton--marca:hover { --boton-fondo: var(--rio-600); --boton-borde: var(--rio-600); }
+.boton--marca:hover { --boton-fondo: var(--rio-700); --boton-borde: var(--rio-700); }
 
 .boton--linea {
   --boton-borde: var(--linea);

@@ -16,9 +16,21 @@ REPO="Gersioasecas/riverside-web"
 grep -q "riversidechachalacas.com.mx" codigo-puro/CNAME || { echo "❌ CNAME con dominio equivocado"; exit 1; }
 [ -f codigo-puro/index.html ] || { echo "❌ falta index.html"; exit 1; }
 
+# sloplint bloquea CUALQUIER regla que no esté justificada por escrito en
+# docs/SLOPLINT-ACEPTADOS.md. Aceptar una regla nueva exige agregarla ahí con
+# la medición que la desmiente — no basta con silenciarla.
+ACEPTADAS="low-contrast"
 if command -v sloplint >/dev/null 2>&1; then
   echo "▸ sloplint"
-  sloplint codigo-puro/index.html || { echo "❌ sloplint encontró algo — revísalo antes de publicar"; exit 1; }
+  SALIDA="$(sloplint codigo-puro/index.html codigo-puro/css/ 2>&1 || true)"
+  NUEVAS="$(echo "$SALIDA" | grep -oE '^● [a-z-]+' | sed 's/● //' | grep -vxF "$ACEPTADAS" || true)"
+  if [ -n "$NUEVAS" ]; then
+    echo "$SALIDA"
+    echo "❌ reglas sin justificar: $NUEVAS"
+    echo "   Arréglalas, o documéntalas en docs/SLOPLINT-ACEPTADOS.md con la prueba."
+    exit 1
+  fi
+  echo "  solo hallazgos aceptados (ver docs/SLOPLINT-ACEPTADOS.md)"
 fi
 
 python3 - <<'PY'

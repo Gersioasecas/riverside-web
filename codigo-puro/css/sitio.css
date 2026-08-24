@@ -50,16 +50,17 @@
   gap: var(--e-4);
   padding: var(--e-3) var(--margen-x);
   color: var(--blanco);
+  /* solo se animan color y sombra: animar padding mueve la caja y provoca
+     recálculo de layout en cada cuadro. La barra se compacta de golpe. */
   transition:
     background-color var(--t-medio) var(--curva-suave),
     color var(--t-medio) var(--curva-suave),
-    box-shadow var(--t-medio) var(--curva-suave),
-    padding var(--t-medio) var(--curva-suave);
+    box-shadow var(--t-medio) var(--curva-suave);
 }
 
 /* al salir del hero la barra se posa: el fondo aparece porque hay algo detrás */
 .nav.esta-posada {
-  background: rgb(251 248 244 / 0.88);
+  background: rgb(246 250 251 / 0.88);
   -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
   color: var(--texto);
@@ -135,7 +136,6 @@
   place-items: center;
   padding: var(--e-10) var(--margen-x) var(--e-9);
   isolation: isolate;
-  overflow: hidden;
 }
 
 .hero__fondo { position: absolute; inset: 0; z-index: -2; }
@@ -306,10 +306,18 @@
 
 .estancia__foto {
   position: relative;
-  overflow: hidden;
   border-radius: var(--radio-3);
-  background: var(--arena-300);
+  background: var(--agua-100);
   aspect-ratio: 4 / 5;
+}
+/* el recorte vive en la envoltura de la imagen, no en la figura: así la
+   cumbrera (::after) no queda atrapada en un contenedor que recorta */
+.estancia__foto picture {
+  display: block;
+  width: 100%; height: 100%;
+  /* recorta el acercamiento del hover sin usar overflow, para no crear un
+     contenedor que atrape a la cumbrera de al lado */
+  clip-path: inset(0 round var(--radio-3));
 }
 .estancia__foto img {
   width: 100%; height: 100%; object-fit: cover;
@@ -541,7 +549,7 @@
   font-family: var(--fuente-texto);
   font-size: 0.6em;
   font-weight: var(--peso-medio);
-  color: var(--marca);
+  color: var(--marca-legible);
   letter-spacing: 0.02em;
   white-space: nowrap;
 }

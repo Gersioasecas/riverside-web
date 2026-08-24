@@ -18,6 +18,12 @@
   --rio-200: #b9d8e8;
   --rio-100: #dceaf2;
 
+  /* Blanco de agua: el río desaturado casi hasta el papel. El sitio se llama
+     Riverside y su logo es una gota — el lienzo es agua, no arena. (La arena
+     existe, pero como acento cálido, no como fondo.) */
+  --agua-50: #f6fafb;
+  --agua-100: #eef5f8;
+
   /* --- primitivos: tierra ---------------------------------------------- */
   /* arena y madera medidas en las fotos del hotel y la palapa */
   --arena-600: #b99a76;
@@ -32,26 +38,30 @@
   --blanco: #ffffff;
   --tinta-900: #17232c;
   --tinta-600: #4d5f6c;
-  --tinta-400: #7d8d99;
+  --tinta-400: #63737f;   /* subido: #7d8d99 daba 3.25:1 sobre el lienzo */
 
   /* --- semánticos ------------------------------------------------------ */
-  --fondo:            var(--arena-50);
-  --fondo-alt:        var(--arena-100);
+  --fondo:            var(--agua-50);
+  --fondo-alt:        var(--agua-100);
   --fondo-hondo:      var(--rio-900);   /* secciones oscuras */
   --fondo-hondo-alt:  var(--rio-950);
 
   --texto:            var(--tinta-900);
   --texto-suave:      var(--tinta-600);
   --texto-tenue:      var(--tinta-400);
-  --texto-invertido:  var(--arena-100);
+  --texto-invertido:  #e8f1f5;
   --texto-invertido-suave: #a9c1d1;
 
-  --marca:            var(--rio-500);
+  --marca:            var(--rio-500);   /* identidad: trazos, la corriente, bordes */
+  /* Para TEXTO y para fondos de botón el azul del logo se queda en 4.18:1 sobre
+     el lienzo claro, por debajo de AA. Esta variante es el mismo azul, un paso
+     más hondo, y da 5.71:1. La identidad no cambia; la legibilidad sí. */
+  --marca-legible:    #0d66aa;
   --marca-honda:      var(--rio-700);
   --marca-clara:      var(--rio-300);
   --acento-calido:    var(--teja-600);
 
-  --linea:            #e3d9cd;
+  --linea:            #dde7ec;
   --linea-honda:      #1d3d54;
 
   /* --- tipografía ------------------------------------------------------ */
