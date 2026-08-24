@@ -146,13 +146,13 @@ De `~/.claude/CLAUDE.md`, `knowledge/`, `memory/` y el precedente de `solmil.com
 |---|---|---|---|---|
 | H-1 | Saber qué es el sitio actual y rescatar sus assets | yo (curl/puppeteer/PIL) | assets en disco + captura leída | ✅ cerrado |
 | H-2 | Auditar el DNS y encontrar qué se rompe al mudar | yo (`dig`) | Titan/SPF identificados | ✅ cerrado |
-| H-3 | Contenido REAL del negocio y del destino | Workflow 4 lentes + verificación adversarial | cada dato con fuente_url | 🔄 en vuelo (`wf_cdcc5c2c-276`) |
-| H-4 | Sistema de diseño desde el logo (tokens, tipografía, signature) | yo | tokens escritos, cero valores mágicos | ⬜ |
-| H-5 | Rebanada testigo: hero + una sección, para validar el norte | yo | Sergio la ve | ⬜ |
-| H-6 | Sitio completo | yo + obreros para la talacha | todas las secciones | ⬜ |
-| H-7 | Assets optimizados (webp/avif, responsive, favicon, OG) | obrero / script | Lighthouse ≥ 90 | ⬜ |
-| H-8 | SEO técnico: JSON-LD `Hotel`+`LocalBusiness`, sitemap, robots, OG | obrero | validadores en verde | ⬜ |
-| H-9 | Gates: `sloplint` + `/revisor` + auditores | skills | 0 críticos, ≥ B | ⬜ |
+| H-3 | Contenido REAL del negocio y del destino | Workflow 4 lentes + verificación adversarial | cada dato con fuente_url | ✅ cerrado — la mayoría de los hallazgos fueron REFUTADOS y no entraron |
+| H-4 | Sistema de diseño desde el logo (tokens, tipografía, signature) | yo | tokens escritos, cero valores mágicos | ✅ `css/tokens.css` + `js/corriente.js` |
+| H-5 | Rebanada testigo: hero + una sección | yo | Sergio la ve | ✅ enviada `docs/antes-despues.png` |
+| H-6 | Sitio completo | yo | todas las secciones | ✅ hero · estancias · el lugar · alrededor · cómo llegar · contacto · pie · 404 |
+| H-7 | Assets optimizados | `scripts/imagenes.py` | 36 archivos avif+webp+jpg, 4.3 MB totales | ✅ |
+| H-8 | SEO técnico | yo | JSON-LD `LodgingBusiness`+`WebSite` válido, sitemap, robots, OG, 404 | ✅ |
+| H-9 | Gates | `sloplint` + revisión de 4 lentes | sloplint ✅ limpio · revisión 🔄 `wf_233fed39-f37` |
 | H-10 | Repo GitHub + Pages + CNAME | yo | build verde | ⬜ |
 | H-11 | **Cambio de DNS (A → GitHub Pages)** | MCP WordPress.com | **R1 — pido confirmación** | 🛑 parqueado |
 | H-12 | Verificación en vivo + prueba de que el correo sobrevivió | yo | HTTPS OK + correo probado | ⬜ |
@@ -180,7 +180,30 @@ De `~/.claude/CLAUDE.md`, `knowledge/`, `memory/` y el precedente de `solmil.com
 
 ---
 
+## 🔎 Hallazgos que Sergio tiene que saber (no son míos de arreglar)
+
+1. **En `riversidehotel.com.mx` el botón «Reserva ahora» apunta a `href="#"`.** Es un botón
+   muerto: no lleva a motor, formulario ni WhatsApp. (Verificado por el workflow. Ese sitio
+   no se toca por I-1, pero él debería saberlo — le está costando reservas.)
+2. **El hotel SÍ tiene motor de reservas** (Cloudbeds) y publica tarifas por fecha; el sitio hub
+   no enlaza a él. Solo 1 de las 4 líneas de producto tiene camino de reserva real.
+3. **Los nombres de habitación son solo «Doble» y «Suite»**, sin nombres de fantasía.
+4. **Instagram dice «Cabañas» donde el sitio dice «Glamping»**, y declara Pet Friendly (el
+   sitio no lo decía). Hay que unificar el nombre.
+5. El párrafo *«Bienvenido a un mundo de posibilidades ilimitadas…»* del sitio viejo era el
+   **placeholder literal del tema de WordPress**. Nadie lo escribió.
+
+## ❓ Forks para Sergio (ninguno bloquea; sigo sin ellos)
+
+- **¿Publicamos precios?** El precio es el 2º factor de elección de hotel (57%). Él ya publicó
+  los de la casa en su Instagram ($4,500 entre semana / $6,500 fin de semana). Los del hotel
+  cambian por fecha, así que no se pueden fijar. Propuesta: «desde» solo en la casa, o nada.
+- **¿Mapa embebido?** Un iframe de Google Maps mete un tercero y cookies. Alternativa: enlace
+  «Cómo llegar» que abra Maps. Me inclino por el enlace.
+- **¿Reseñas?** El sitio viejo tenía ★★★★★ que el negocio se ponía solo. Las quité. Si él
+  autoriza, se pueden traer reseñas reales de Google con su cita y autor.
+
 ## ➡️ Siguiente movimiento
 
-Cerrar **H-4** (sistema de diseño) mientras vuelve el Workflow de contenido, y con eso levantar
-la **rebanada testigo (H-5)** para enseñársela a Sergio antes de abrir el fan-out.
+Leer la revisión de 4 lentes, aplicar lo confirmado, y quedar a la espera del visto bueno para
+las dos paradas rojas: **crear el repo en GitHub** y **cambiar los registros A**.

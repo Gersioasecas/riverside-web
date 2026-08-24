@@ -297,10 +297,8 @@
   gap: var(--e-7) var(--e-5);
   margin-top: var(--e-8);
   grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-  /* suelo opaco: el río pasa por DEBAJO de la fila de estancias en vez de
-     asomarse por los huecos entre tarjetas, que se leía como accidente */
-  background: var(--fondo);
-  padding-block: var(--e-2);
+  /* sin fondo propio: el río NO se esconde debajo, se encajona contra el
+     margen al pasar por aquí (ver [data-encajona] en corriente.js) */
 }
 @media (min-width: 1000px) { .estancias { grid-template-columns: repeat(4, 1fr); } }
 
@@ -525,7 +523,6 @@
   display: grid;
   gap: 0;
   margin-top: var(--e-7);
-  background: var(--fondo);   /* suelo opaco: el río pasa por debajo */
   max-width: 62rem;
 }
 .cerca__item {
@@ -601,3 +598,6 @@
 /* dos secciones hondas seguidas no necesitan doble aire en la costura */
 .seccion--honda + .seccion { padding-block-start: calc(var(--seccion-y) * 0.8); }
 .seccion + .seccion--honda { padding-block-start: calc(var(--seccion-y) * 0.9); }
+
+/* con la página corta, el hero y el primer título no necesitan tanto aire */
+#estancias { padding-block-start: clamp(3.5rem, 2rem + 5vw, 6.5rem); }
