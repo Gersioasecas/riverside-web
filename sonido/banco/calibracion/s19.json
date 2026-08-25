@@ -1,0 +1,9 @@
+[
+ {"nom":"S-base","perillas":{"MAESTRO":1.95,"PROF":0.35,"FCORTE":78,"AMPJIT":0.40,"JITTER":0.30}},
+ {"nom":"S-a20","perillas":{"MAESTRO":1.95,"PROF":0.35,"FCORTE":78,"AMPJIT":0.20,"JITTER":0.30}},
+ {"nom":"S-a20-j18","perillas":{"MAESTRO":1.95,"PROF":0.35,"FCORTE":78,"AMPJIT":0.20,"JITTER":0.18}},
+ {"nom":"S-a10-j18","perillas":{"MAESTRO":1.95,"PROF":0.35,"FCORTE":78,"AMPJIT":0.10,"JITTER":0.18}},
+ {"nom":"S-a20-j18-r10","perillas":{"MAESTRO":1.95,"PROF":0.35,"FCORTE":78,"AMPJIT":0.20,"JITTER":0.18,"REPARTO":1.06}},
+ {"nom":"S-a20-j18-P28","perillas":{"MAESTRO":1.95,"PROF":0.28,"FCORTE":78,"AMPJIT":0.20,"JITTER":0.18}},
+ {"nom":"S-a20-j18-T48","perillas":{"MAESTRO":1.95,"PROF":0.35,"FCORTE":78,"AMPJIT":0.20,"JITTER":0.18,"T0":4.8}}
+]

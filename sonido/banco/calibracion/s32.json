@@ -1,0 +1,8 @@
+[
+ {"nom":"U1-P15","perillas":{"MAESTRO":1.95,"NTRENES":1,"PROF":0.15,"PEEL":0.0,"AMPJIT":0.45,"ANCHO_A":0.40,"ANCHO_B":1.10,"SESGO":0.0,"T0":4.0}},
+ {"nom":"U1-P20","perillas":{"MAESTRO":1.95,"NTRENES":1,"PROF":0.20,"PEEL":0.0,"AMPJIT":0.45,"ANCHO_A":0.40,"ANCHO_B":1.10,"SESGO":0.0,"T0":4.0}},
+ {"nom":"U1-P28","perillas":{"MAESTRO":1.95,"NTRENES":1,"PROF":0.28,"PEEL":0.0,"AMPJIT":0.45,"ANCHO_A":0.40,"ANCHO_B":1.10,"SESGO":0.0,"T0":4.0}},
+ {"nom":"U1-P20-L15","perillas":{"MAESTRO":1.95,"NTRENES":1,"PROF":0.20,"PEEL":1.5,"AMPJIT":0.45,"ANCHO_A":0.40,"ANCHO_B":1.10,"SESGO":0.0,"T0":4.0}},
+ {"nom":"U2-P28","perillas":{"MAESTRO":1.95,"NTRENES":2,"PROF":0.28,"PEEL":1.0,"AMPJIT":0.45,"ANCHO_A":0.40,"ANCHO_B":1.10,"SESGO":0.0,"T0":4.0}},
+ {"nom":"U2-P40","perillas":{"MAESTRO":1.95,"NTRENES":2,"PROF":0.40,"PEEL":1.0,"AMPJIT":0.45,"ANCHO_A":0.40,"ANCHO_B":1.10,"SESGO":0.0,"T0":4.0}}
+]

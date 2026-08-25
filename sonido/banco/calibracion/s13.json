@@ -1,0 +1,10 @@
+[
+ {"nom":"X-P70-V0","perillas":{"MAESTRO":1.55,"PROF":0.70,"PEEL":4.5,"T0":4.8,"TD":3.2,"VIENTO_dB":0.001}},
+ {"nom":"X-P70-V12","perillas":{"MAESTRO":1.55,"PROF":0.70,"PEEL":4.5,"T0":4.8,"TD":3.2,"VIENTO_dB":1.2}},
+ {"nom":"X-P70-L30","perillas":{"MAESTRO":1.55,"PROF":0.70,"PEEL":3.0,"T0":4.8,"TD":3.2,"VIENTO_dB":1.2}},
+ {"nom":"X-P70-R110","perillas":{"MAESTRO":1.55,"PROF":0.70,"PEEL":4.5,"T0":4.8,"TD":3.2,"VIENTO_dB":1.2,"REPARTO":1.10}},
+ {"nom":"X-P85-R110","perillas":{"MAESTRO":1.55,"PROF":0.85,"PEEL":4.5,"T0":4.8,"TD":3.2,"VIENTO_dB":1.2,"REPARTO":1.10}},
+ {"nom":"X-P60-R110","perillas":{"MAESTRO":1.55,"PROF":0.60,"PEEL":4.5,"T0":4.8,"TD":3.2,"VIENTO_dB":1.2,"REPARTO":1.10}},
+ {"nom":"X-P70-N27","perillas":{"MAESTRO":1.55,"PROF":0.70,"PEEL":4.5,"T0":4.8,"TD":3.2,"VIENTO_dB":1.2,"NVOCES":27}},
+ {"nom":"X-P70-N4tr","perillas":{"MAESTRO":1.55,"PROF":0.70,"PEEL":4.5,"T0":4.8,"TD":3.2,"VIENTO_dB":1.2,"REPARTO":1.10,"NTRENES":2}}
+]

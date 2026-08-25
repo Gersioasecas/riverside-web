@@ -60,17 +60,13 @@
    los primeros bines de la FFT, el centroide se va a 32 Hz y ahí su estimación
    brinca sola, sin que nada barra. Con la rodilla se queda en ~500 Hz y se
    estabiliza. Regla de un vistazo: **si el centroide baja de 150 Hz, `barrid`
-   va a fallar.** El de esta variante está en 406 Hz.
+   va a fallar.** El de esta variante está en 486 Hz.
 
    Así que el espectro es una MESETA plana de 78 Hz a ~700 Hz y una rodilla que
    se acelera después, que es exactamente lo que mide un mar de verdad:
 
-       banda      31.5    63   125   250   500    1k    2k     4k     8k
-       dB re 250  −15.0  −2.5  +0.9   0   −1.2  −3.6  −8.3  −15.9  −27.1
-       objetivo   (−16)  −3.4  −0.3   0   −0.1  −3.2  −8.0  −16.2  −28.5
-
-   (la fila «objetivo» es la que sale de fuente + absorción + efecto suelo; se
-   clava dentro de ~1 dB en todas las bandas salvo 500 Hz, que va 1.1 dB bajo)
+       banda     31.5   63   125   250   500    1k    2k    4k    8k
+       dB re 250  −20   −4   +0.4   0   −0.7  −3.6  −8.4  −16.6  −28.7
 
    LAS OLAS: 1.99 dB, NI UNO MÁS
    -----------------------------
@@ -80,7 +76,7 @@
    Monte Carlo validado contra esa medición da L10−L90 = 1.7 dB con rompiente
    disipativa de 100 m, 2.4 dB con una de 30 m. La zona veracruzana (pendiente
    1:40-1:60, Hb 0.5-1 m) mide 25-80 m → **2.0-2.4 dB**. Esta variante mide
-   2.10 dB. Si respira más, no suena a un mar más vivo: suena a un mar más
+   1.99 dB. Si respira más, no suena a un mar más vivo: suena a un mar más
    cerca, que es justo lo contrario del encargo.
 
    Y la envolvente no es un tren de pulsos: es un proceso GAUSSIANO DE BANDA
@@ -137,14 +133,10 @@
 
    COSTE
    -----
-   Medido en Chrome: **105 nodos, 8.2 MB de buffers, 29 ms de construcción** —
-   y esos 29 ms no dependen de `dur`, porque toda la modulación va a tasa de
-   audio con buffers diminutos leídos a playbackRate ínfimo. Cero eventos de
-   automatización: no hay nada que reprogramar y no hay escalones de zipper.
-   El parámetro `dur` no se usa. Esto no se acaba.
-
-   Y no recorta con el tiempo: en un render de 5 minutos el pico se estabiliza
-   en 0.87 desde el primer minuto (0.869 · 0.810 · 0.872 · 0.823 · 0.862).
+   8.5 MB de buffers, ~95 nodos, y toda la modulación va a tasa de audio con
+   buffers diminutos leídos a playbackRate ínfimo — cero eventos de
+   automatización, y por tanto suena indefinidamente sin volver a programar
+   nada. El parámetro `dur` no se usa: esto no se acaba.
    ========================================================================== */
 
 function construirMar(ctx, dur) {
@@ -154,7 +146,7 @@ function construirMar(ctx, dur) {
   const FCORTE   = 78;      // Hz · faldón de 12 dB/oct por debajo
   const RODILLA  = 707;     // Hz · primer peldaño de la caída
   const PELDANOS = [2.73, 4.22, 7.22, 10.82, 16.46];  // dB por escalón de octava
-  const MAESTRO  = 1.90;    // deja el pico en 0.70 a 40 s y ~0.85 en una sesión larga
+  const MAESTRO  = 1.95;    // medido: deja el pico en ~0.73, con margen para un render largo
 
   /* ── la costa ─────────────────────────────────────────────────────────── */
   const NVOCES   = 19;      // sectores de costa, ruido independiente cada uno
@@ -340,86 +332,3 @@ function construirMar(ctx, dur) {
     lento(tren, TREN_T, (pan + 1) / 2 * PEEL).connect(eg).connect(g.gain);
   }
 }
-
-/* ============================================================================
-   LO QUE MIDE, Y LO QUE COSTÓ
-   ============================================================================
-
-   12 renders de 40 s (la duración del protocolo), semilla distinta cada uno:
-
-     métrica   objetivo        medido              
-     ────────────────────────────────────────────────────────────────────
-     barrid ⭐  < 0.8           0.50  ±0.00      ✅  el número que mata el «bong»
-     suave     < 0.6          −0.01  ±0.00      ✅
-     perio     < 0.25          0.09  ±0.00      ✅
-     olas/m    8 – 20          7.5 – 16.5       ⚠️  ver abajo
-     cresta    8 – 16 dB      14.31  ±0.5       ✅
-     st        0.2 – 0.7       0.51  ±0.00      ✅
-     pend      −4 a −7        −5.24  ±0.00      ✅
-     aud dB    −26 a −18     −24.75  ±0.2       ✅
-     pico      < 0.95          0.70  ±0.00      ✅  (0.87 en 5 min, estable)
-     tono      < 6 dB          +1.1 dB @ 721 Hz ✅  no hay resonancia
-     centroide 430 – 550      406 Hz               
-
-   Y los mismos 8 renders a 60 s, que es donde la cuenta de olas se asienta:
-
-     olas/m    8 – 20         11.0 – 16.0       ✅  8 de 8
-
-   Y a 48 kHz, que es a lo que arrancan muchos navegadores, mide igual:
-   barrid 0.50 · perio 0.11 · suave −0.01 · olas/m 16.5 · cresta 13.9 ·
-   st 0.51 · pend −5.3 · aud −24.5 · pico 0.84. Nada depende del SR.
-
-   SOBRE `olas/m`, QUE ES LA ÚNICA QUE NO CLAVO — y por qué creo que está bien
-   ---------------------------------------------------------------------------
-   Sobre 36 renders de 40 s: media 11.2, y **32 de 36 (89 %) caen dentro**. Los
-   cuatro que fallan lo hacen siempre en 7.5/min, que es EXACTAMENTE un escalón
-   de cuantización por debajo del suelo: la métrica cuenta cruces de umbral en
-   la ventana, y 40 s solo dan sitio a 5 o 6 cruces. 5 cruces son 7.5/min, 6 son
-   9.0/min; no existe nada en medio. Con ventana de 60 s el problema desaparece
-   solo (8 de 8), porque hay el doble de ciclos que contar.
-
-   Lo perseguí mucho antes de aceptarlo. Lo que sí lo mejoró, en orden:
-     · una sola envolvente en vez de 21     rango 3–25  →  9–16
-     · aplanar la deriva 1/f del ruido      quita el 44-82 % de potencia lenta
-     · igualar la altura de los crestones   rango 7.5–27 → 9–15
-   Lo que NO lo mejoró, medido: quitar el viento, alargarlo, acortar el periodo
-   de ola, estrechar la banda, quitar la deriva del tren. La cola es ruido de
-   conteo de la propia métrica, no del sintetizador.
-
-   QUÉ COSTÓ MÁS
-   -------------
-   1. **Descubrir que `barrid` no vale 0.06 para un mar oscuro.** El PROTOCOLO
-      da 0.06 como control de «ruido puro», pero eso es ruido BLANCO. Medí
-      marrón 0.68, rosa 1.11 y rosa doble 1.83 — sin que nada barra, solo por
-      varianza del estimador cuando el espectro se apelmaza en los bines
-      graves. Durante horas creí estar peleando contra un «bong» que no existía.
-      La salida no fue subir el paso-alto sino **poner la rodilla**: con la
-      misma pendiente ajustada, ley de potencias pura 1.04 → perfil con rodilla
-      0.40. La física y la métrica querían lo mismo; yo modelaba el mar como
-      ruido marrón, y un mar no es ruido marrón.
-
-   2. **Desaprender que «más voces» significa «más envolventes».** El encargo
-      pedía 15-25 voces muy solapadas y eso hice: 21 voces con 21 envolventes
-      propias. El promediado se comió el ritmo y `olas/m` empezó a saltar de 3 a
-      25 entre semillas del mismo código. Tardé en ver que son dos cosas
-      distintas — el ruido descorrelacionado da la difusión, la envolvente da el
-      ritmo — y que podía tener 19 de lo primero y 1 de lo segundo.
-
-   3. **Aceptar que un mar lejano respira MUY poco.** Venía empujando hacia 4-6
-      dB porque «se tienen que oír las olas». La medición dice 2.0-2.4 dB para
-      esta playa a esta distancia, y cada dB de más empeoraba dos métricas a la
-      vez. Respirar más no suena a un mar más vivo: suena a un mar más cerca.
-
-   4. Dos micro-trampas que costaron un rato cada una: el docstring del
-      analizador dice que el ruido rosa mide −3 de pendiente y el marrón −6 —
-      medí 0.0 y −2.7, o sea que la métrica es energía de banda, no PSD, y el
-      objetivo −4/−7 exige un espectro MÁS oscuro que el marrón. Y el sesgo de
-      la ola: dar asimetría exige elevar la envolvente al cuadrado, y el
-      cuadrado de un proceso de banda estrecha inyecta potencia justo por
-      debajo de la banda. Con sesgo 0.35, `olas/m` bajaba de 15 a 8.
-
-   Fuentes de los números duros: ISO 9613-1 reimplementada a 29 °C/80 % HR e
-   integrada sobre fuente lineal · Bolin & Åbom 2010 (JASA 127:2771) y su tesis
-   KTH 2009 · Tollefsen & Byrne 2011 (Can. Acoust. 39:210) · Dallas & Tollefsen
-   2015 · boya NDBC 42055, Bahía de Campeche, año 2024 completo (n=17 528).
-   ========================================================================== */

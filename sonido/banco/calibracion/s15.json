@@ -1,0 +1,9 @@
+[
+ {"nom":"Z-A","perillas":{"MAESTRO":1.55,"PROF":0.60,"PEEL":5.5,"T0":4.8,"TD":3.2,"VIENTO_dB":1.5}},
+ {"nom":"Z-B","perillas":{"MAESTRO":1.55,"PROF":0.65,"PEEL":6.5,"T0":4.8,"TD":3.2,"VIENTO_dB":1.5}},
+ {"nom":"Z-C","perillas":{"MAESTRO":1.55,"PROF":0.70,"PEEL":7.0,"T0":4.8,"TD":3.2,"VIENTO_dB":1.5}},
+ {"nom":"Z-D","perillas":{"MAESTRO":1.55,"PROF":0.60,"PEEL":6.5,"T0":4.4,"TD":2.8,"VIENTO_dB":1.5}},
+ {"nom":"Z-E","perillas":{"MAESTRO":1.55,"PROF":0.70,"PEEL":6.5,"T0":4.8,"TD":3.2,"VIENTO_dB":2.0,"REPARTO":1.35}},
+ {"nom":"Z-F","perillas":{"MAESTRO":1.55,"PROF":0.60,"PEEL":5.5,"T0":4.8,"TD":3.2,"VIENTO_dB":1.5,"NVOCES":25}},
+ {"nom":"Z-G","perillas":{"MAESTRO":1.55,"PROF":0.55,"PEEL":6.5,"T0":4.8,"TD":3.2,"VIENTO_dB":1.8,"NVOCES":25}}
+]

@@ -1,0 +1,10 @@
+[
+ {"nom":"V-P45-L65","perillas":{"MAESTRO":1.55,"PROF":0.45,"PEEL":6.5}},
+ {"nom":"V-P55-L65","perillas":{"MAESTRO":1.55,"PROF":0.55,"PEEL":6.5}},
+ {"nom":"V-P70-L65","perillas":{"MAESTRO":1.55,"PROF":0.70,"PEEL":6.5}},
+ {"nom":"V-P85-L65","perillas":{"MAESTRO":1.55,"PROF":0.85,"PEEL":6.5}},
+ {"nom":"V-P70-L35","perillas":{"MAESTRO":1.55,"PROF":0.70,"PEEL":3.5}},
+ {"nom":"V-P70-L10","perillas":{"MAESTRO":1.55,"PROF":0.70,"PEEL":10.0}},
+ {"nom":"V-P85-L35","perillas":{"MAESTRO":1.55,"PROF":0.85,"PEEL":3.5}},
+ {"nom":"V-P70-L65-T5","perillas":{"MAESTRO":1.55,"PROF":0.70,"PEEL":6.5,"T0":5.0}}
+]

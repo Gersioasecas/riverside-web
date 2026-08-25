@@ -1,0 +1,5 @@
+[
+ {"nom":"FIN-A","perillas":{"MAESTRO":1.95,"PROF":0.75,"PEEL":2.0,"AMPJIT":0.45,"ANCHO_A":0.40,"ANCHO_B":1.10,"SESGO":0.0}},
+ {"nom":"FIN-B","perillas":{"MAESTRO":1.95,"PROF":0.75,"PEEL":2.0,"AMPJIT":0.45,"ANCHO_A":0.35,"ANCHO_B":0.90,"SESGO":0.0}},
+ {"nom":"FIN-C","perillas":{"MAESTRO":1.95,"PROF":0.75,"PEEL":2.0,"AMPJIT":0.45,"ANCHO_A":0.40,"ANCHO_B":1.10,"SESGO":0.0,"T0":4.5}}
+]

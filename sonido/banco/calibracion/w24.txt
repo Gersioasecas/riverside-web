@@ -1,0 +1,15 @@
+/tmp/mar-cal/sw/P0-Eoff__1.wav
+/tmp/mar-cal/sw/P0-Eoff__2.wav
+/tmp/mar-cal/sw/P0-Eoff__3.wav
+/tmp/mar-cal/sw/P0-Eoff__4.wav
+/tmp/mar-cal/sw/P0-Eoff__5.wav
+/tmp/mar-cal/sw/P0-E20__1.wav
+/tmp/mar-cal/sw/P0-E20__2.wav
+/tmp/mar-cal/sw/P0-E20__3.wav
+/tmp/mar-cal/sw/P0-E20__4.wav
+/tmp/mar-cal/sw/P0-E20__5.wav
+/tmp/mar-cal/sw/P42-E20-V0__1.wav
+/tmp/mar-cal/sw/P42-E20-V0__2.wav
+/tmp/mar-cal/sw/P42-E20-V0__3.wav
+/tmp/mar-cal/sw/P42-E20-V0__4.wav
+/tmp/mar-cal/sw/P42-E20-V0__5.wav

@@ -1,0 +1,10 @@
+[
+ {"nom":"rap-P50","perillas":{"MAESTRO":1.65,"PROF":0.50,"INTERVALO":9,"TA":1.2,"TD":3.0,"VIENTO_dB":0.001}},
+ {"nom":"rap-P75","perillas":{"MAESTRO":1.65,"PROF":0.75,"INTERVALO":9,"TA":1.2,"TD":3.0,"VIENTO_dB":0.001}},
+ {"nom":"rap-P95","perillas":{"MAESTRO":1.65,"PROF":0.95,"INTERVALO":9,"TA":1.2,"TD":3.0,"VIENTO_dB":0.001}},
+ {"nom":"med-P50","perillas":{"MAESTRO":1.65,"PROF":0.50,"INTERVALO":13,"TA":2.0,"TD":4.5,"VIENTO_dB":0.001}},
+ {"nom":"med-P75","perillas":{"MAESTRO":1.65,"PROF":0.75,"INTERVALO":13,"TA":2.0,"TD":4.5,"VIENTO_dB":0.001}},
+ {"nom":"med-P95","perillas":{"MAESTRO":1.65,"PROF":0.95,"INTERVALO":13,"TA":2.0,"TD":4.5,"VIENTO_dB":0.001}},
+ {"nom":"len-P75","perillas":{"MAESTRO":1.65,"PROF":0.75,"INTERVALO":20,"TA":3.0,"TD":7.0,"VIENTO_dB":0.001}},
+ {"nom":"len-P95","perillas":{"MAESTRO":1.65,"PROF":0.95,"INTERVALO":20,"TA":3.0,"TD":7.0,"VIENTO_dB":0.001}}
+]

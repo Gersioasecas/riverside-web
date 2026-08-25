@@ -1,0 +1,9 @@
+[
+ {"nom":"G-L0","perillas":{"MAESTRO":1.95,"PROF":0.60,"PEEL":0.0,"AMPJIT":0.45}},
+ {"nom":"G-L20","perillas":{"MAESTRO":1.95,"PROF":0.60,"PEEL":2.0,"AMPJIT":0.45}},
+ {"nom":"G-L40","perillas":{"MAESTRO":1.95,"PROF":0.60,"PEEL":4.0,"AMPJIT":0.45}},
+ {"nom":"G-b14","perillas":{"MAESTRO":1.95,"PROF":0.60,"PEEL":2.0,"AMPJIT":0.45,"ANCHO_A":0.45,"ANCHO_B":1.40}},
+ {"nom":"G-b11","perillas":{"MAESTRO":1.95,"PROF":0.60,"PEEL":2.0,"AMPJIT":0.45,"ANCHO_A":0.40,"ANCHO_B":1.10}},
+ {"nom":"G-b11-T45","perillas":{"MAESTRO":1.95,"PROF":0.60,"PEEL":2.0,"AMPJIT":0.45,"ANCHO_A":0.40,"ANCHO_B":1.10,"T0":4.5}},
+ {"nom":"G-b11-P80","perillas":{"MAESTRO":1.95,"PROF":0.80,"PEEL":2.0,"AMPJIT":0.45,"ANCHO_A":0.40,"ANCHO_B":1.10}}
+]

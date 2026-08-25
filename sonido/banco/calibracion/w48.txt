@@ -1,0 +1,12 @@
+/tmp/mar-cal/sw/DEF__1.wav
+/tmp/mar-cal/sw/DEF__2.wav
+/tmp/mar-cal/sw/DEF__3.wav
+/tmp/mar-cal/sw/DEF__4.wav
+/tmp/mar-cal/sw/DEF__5.wav
+/tmp/mar-cal/sw/DEF__6.wav
+/tmp/mar-cal/sw/DEF__7.wav
+/tmp/mar-cal/sw/DEF__8.wav
+/tmp/mar-cal/sw/DEF__9.wav
+/tmp/mar-cal/sw/DEF__10.wav
+/tmp/mar-cal/sw/DEF__11.wav
+/tmp/mar-cal/sw/DEF__12.wav

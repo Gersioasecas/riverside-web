@@ -1,0 +1,6 @@
+[
+ {"nom":"E-off","perillas":{"MAESTRO":1.95,"PROF":0.42,"FCORTE":78,"AMPJIT":0.20,"DERIVA":26,"ESTABLE":0}},
+ {"nom":"E-40","perillas":{"MAESTRO":1.95,"PROF":0.42,"FCORTE":78,"AMPJIT":0.20,"DERIVA":26,"ESTABLE":4.0}},
+ {"nom":"E-20","perillas":{"MAESTRO":1.95,"PROF":0.42,"FCORTE":78,"AMPJIT":0.20,"DERIVA":26,"ESTABLE":2.0}},
+ {"nom":"E-10","perillas":{"MAESTRO":1.95,"PROF":0.42,"FCORTE":78,"AMPJIT":0.20,"DERIVA":26,"ESTABLE":1.0}}
+]

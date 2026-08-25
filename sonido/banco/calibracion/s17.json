@@ -1,0 +1,10 @@
+[
+ {"nom":"B1","perillas":{"MAESTRO":1.55,"PROF":0.50,"PEEL":4.0,"T0":4.1,"TD":2.7,"VIENTO_dB":1.5,"BARRAS":1}},
+ {"nom":"B2-d22","perillas":{"MAESTRO":1.55,"PROF":0.50,"PEEL":4.0,"T0":6.2,"TD":2.4,"VIENTO_dB":1.5,"BARRAS":2,"DBARRA":2.2}},
+ {"nom":"B3-d22","perillas":{"MAESTRO":1.55,"PROF":0.50,"PEEL":4.0,"T0":8.0,"TD":2.2,"VIENTO_dB":1.5,"BARRAS":3,"DBARRA":2.2}},
+ {"nom":"B3-d28","perillas":{"MAESTRO":1.55,"PROF":0.50,"PEEL":4.0,"T0":8.0,"TD":2.2,"VIENTO_dB":1.5,"BARRAS":3,"DBARRA":2.8}},
+ {"nom":"B3-d22-T62","perillas":{"MAESTRO":1.55,"PROF":0.50,"PEEL":4.0,"T0":6.2,"TD":2.2,"VIENTO_dB":1.5,"BARRAS":3,"DBARRA":2.2}},
+ {"nom":"B3-d22-P65","perillas":{"MAESTRO":1.55,"PROF":0.65,"PEEL":4.0,"T0":8.0,"TD":2.2,"VIENTO_dB":1.5,"BARRAS":3,"DBARRA":2.2}},
+ {"nom":"B3-d19-L55","perillas":{"MAESTRO":1.55,"PROF":0.55,"PEEL":5.5,"T0":7.0,"TD":2.0,"VIENTO_dB":1.5,"BARRAS":3,"DBARRA":1.9}},
+ {"nom":"B4-d18","perillas":{"MAESTRO":1.55,"PROF":0.55,"PEEL":4.0,"T0":9.0,"TD":2.0,"VIENTO_dB":1.5,"BARRAS":4,"DBARRA":1.8,"CAIDA":0.72}}
+]

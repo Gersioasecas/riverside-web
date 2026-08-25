@@ -1,0 +1,8 @@
+[
+ {"nom":"F-P35","perillas":{"MAESTRO":1.95,"PROF":0.35,"FCORTE":78,"AMPJIT":0.20,"JITTER":0.30}},
+ {"nom":"F-P42","perillas":{"MAESTRO":1.95,"PROF":0.42,"FCORTE":78,"AMPJIT":0.20,"JITTER":0.30}},
+ {"nom":"F-P50","perillas":{"MAESTRO":1.95,"PROF":0.50,"FCORTE":78,"AMPJIT":0.20,"JITTER":0.30}},
+ {"nom":"F-P42-a28","perillas":{"MAESTRO":1.95,"PROF":0.42,"FCORTE":78,"AMPJIT":0.28,"JITTER":0.30}},
+ {"nom":"F-P42-f95","perillas":{"MAESTRO":1.95,"PROF":0.42,"FCORTE":95,"AMPJIT":0.20,"JITTER":0.30}},
+ {"nom":"F-P42-L55","perillas":{"MAESTRO":1.95,"PROF":0.42,"FCORTE":78,"AMPJIT":0.20,"JITTER":0.30,"PEEL":5.5}}
+]

@@ -1,0 +1,5 @@
+[
+ {"nom":"OK-P65","perillas":{"MAESTRO":1.95,"PROF":0.65,"PEEL":2.0,"AMPJIT":0.45,"ANCHO_A":0.40,"ANCHO_B":1.10,"SESGO":0.0,"T0":4.0}},
+ {"nom":"OK-P70","perillas":{"MAESTRO":1.95,"PROF":0.70,"PEEL":2.0,"AMPJIT":0.45,"ANCHO_A":0.40,"ANCHO_B":1.10,"SESGO":0.0,"T0":4.0}},
+ {"nom":"OK-P60","perillas":{"MAESTRO":1.95,"PROF":0.60,"PEEL":2.0,"AMPJIT":0.45,"ANCHO_A":0.40,"ANCHO_B":1.10,"SESGO":0.0,"T0":4.0}}
+]

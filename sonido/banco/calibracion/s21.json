@@ -1,0 +1,9 @@
+[
+ {"nom":"D-off","perillas":{"MAESTRO":1.95,"PROF":0.42,"FCORTE":78,"AMPJIT":0.20,"DERIVA":0}},
+ {"nom":"D-40","perillas":{"MAESTRO":1.95,"PROF":0.42,"FCORTE":78,"AMPJIT":0.20,"DERIVA":40}},
+ {"nom":"D-26","perillas":{"MAESTRO":1.95,"PROF":0.42,"FCORTE":78,"AMPJIT":0.20,"DERIVA":26}},
+ {"nom":"D-16","perillas":{"MAESTRO":1.95,"PROF":0.42,"FCORTE":78,"AMPJIT":0.20,"DERIVA":16}},
+ {"nom":"D-26-P55","perillas":{"MAESTRO":1.95,"PROF":0.55,"FCORTE":78,"AMPJIT":0.20,"DERIVA":26}},
+ {"nom":"D-16-P55","perillas":{"MAESTRO":1.95,"PROF":0.55,"FCORTE":78,"AMPJIT":0.20,"DERIVA":16}},
+ {"nom":"D-26-P70","perillas":{"MAESTRO":1.95,"PROF":0.70,"FCORTE":78,"AMPJIT":0.20,"DERIVA":26}}
+]

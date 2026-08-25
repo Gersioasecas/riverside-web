@@ -1,0 +1,5 @@
+[
+ {"nom":"VT35","perillas":{"MAESTRO":1.72,"VIENTO_dB":0.5,"VIENTO_TAU":35,"VIENTO_T":720}},
+ {"nom":"VT60","perillas":{"MAESTRO":1.72,"VIENTO_dB":0.5,"VIENTO_TAU":60,"VIENTO_T":900}},
+ {"nom":"VT60d9","perillas":{"MAESTRO":1.72,"VIENTO_dB":0.9,"VIENTO_TAU":60,"VIENTO_T":900}}
+]

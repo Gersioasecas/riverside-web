@@ -1,0 +1,12 @@
+/tmp/mar-cal/sw/ENT__1.wav
+/tmp/mar-cal/sw/ENT__2.wav
+/tmp/mar-cal/sw/ENT__3.wav
+/tmp/mar-cal/sw/ENT__4.wav
+/tmp/mar-cal/sw/ENT__5.wav
+/tmp/mar-cal/sw/ENT__6.wav
+/tmp/mar-cal/sw/ENT__7.wav
+/tmp/mar-cal/sw/ENT__8.wav
+/tmp/mar-cal/sw/ENT__9.wav
+/tmp/mar-cal/sw/ENT__10.wav
+/tmp/mar-cal/sw/ENT__11.wav
+/tmp/mar-cal/sw/ENT__12.wav

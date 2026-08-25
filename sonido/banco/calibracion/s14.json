@@ -1,0 +1,10 @@
+[
+ {"nom":"Y-L15","perillas":{"MAESTRO":1.55,"PROF":0.70,"PEEL":1.5,"T0":4.8,"TD":3.2,"VIENTO_dB":1.5}},
+ {"nom":"Y-L25","perillas":{"MAESTRO":1.55,"PROF":0.70,"PEEL":2.5,"T0":4.8,"TD":3.2,"VIENTO_dB":1.5}},
+ {"nom":"Y-L35","perillas":{"MAESTRO":1.55,"PROF":0.70,"PEEL":3.5,"T0":4.8,"TD":3.2,"VIENTO_dB":1.5}},
+ {"nom":"Y-L25-V25","perillas":{"MAESTRO":1.55,"PROF":0.70,"PEEL":2.5,"T0":4.8,"TD":3.2,"VIENTO_dB":2.5}},
+ {"nom":"Y-L25-P55","perillas":{"MAESTRO":1.55,"PROF":0.55,"PEEL":2.5,"T0":4.8,"TD":3.2,"VIENTO_dB":2.0}},
+ {"nom":"Y-L25-D25","perillas":{"MAESTRO":1.55,"PROF":0.70,"PEEL":2.5,"T0":4.8,"TD":2.5,"VIENTO_dB":2.0}},
+ {"nom":"Y-L20-V20","perillas":{"MAESTRO":1.55,"PROF":0.70,"PEEL":2.0,"T0":4.8,"TD":3.2,"VIENTO_dB":2.0}},
+ {"nom":"Y-L25-T55","perillas":{"MAESTRO":1.55,"PROF":0.70,"PEEL":2.5,"T0":5.5,"TD":3.2,"VIENTO_dB":2.0}}
+]

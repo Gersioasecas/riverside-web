@@ -1,0 +1,12 @@
+/tmp/mar-cal/sw/a-p85__1.wav
+/tmp/mar-cal/sw/a-p85__2.wav
+/tmp/mar-cal/sw/b-p60__1.wav
+/tmp/mar-cal/sw/b-p60__2.wav
+/tmp/mar-cal/sw/c-p40__1.wav
+/tmp/mar-cal/sw/c-p40__2.wav
+/tmp/mar-cal/sw/d-p25__1.wav
+/tmp/mar-cal/sw/d-p25__2.wav
+/tmp/mar-cal/sw/e-p40-hp240__1.wav
+/tmp/mar-cal/sw/e-p40-hp240__2.wav
+/tmp/mar-cal/sw/f-p40-hp150__1.wav
+/tmp/mar-cal/sw/f-p40-hp150__2.wav

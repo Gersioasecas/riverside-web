@@ -1,0 +1,8 @@
+[
+ {"nom":"R0","perillas":{"MAESTRO":1.65,"PROF":0.75,"INTERVALO":9,"TA":1.2,"TD":3.0,"VIENTO_dB":0.001,"RETUMBO":0}},
+ {"nom":"R6-hp45","perillas":{"MAESTRO":1.65,"PROF":0.75,"INTERVALO":9,"TA":1.2,"TD":3.0,"VIENTO_dB":0.001,"RETUMBO":6,"FCORTE":45}},
+ {"nom":"R10-hp45","perillas":{"MAESTRO":1.65,"PROF":0.75,"INTERVALO":9,"TA":1.2,"TD":3.0,"VIENTO_dB":0.001,"RETUMBO":10,"FCORTE":45}},
+ {"nom":"R14-hp45","perillas":{"MAESTRO":1.65,"PROF":0.75,"INTERVALO":9,"TA":1.2,"TD":3.0,"VIENTO_dB":0.001,"RETUMBO":14,"FCORTE":45}},
+ {"nom":"R10-hp70","perillas":{"MAESTRO":1.65,"PROF":0.75,"INTERVALO":9,"TA":1.2,"TD":3.0,"VIENTO_dB":0.001,"RETUMBO":10,"FCORTE":70}},
+ {"nom":"R14-hp70","perillas":{"MAESTRO":1.65,"PROF":0.75,"INTERVALO":9,"TA":1.2,"TD":3.0,"VIENTO_dB":0.001,"RETUMBO":14,"FCORTE":70,"RETUMBO_F":210}}
+]

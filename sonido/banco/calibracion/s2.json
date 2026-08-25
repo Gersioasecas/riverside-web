@@ -1,0 +1,8 @@
+[
+ {"nom":"P20","perillas":{"MAESTRO":1.65,"PROF":0.20}},
+ {"nom":"P35","perillas":{"MAESTRO":1.65,"PROF":0.35}},
+ {"nom":"P45","perillas":{"MAESTRO":1.65,"PROF":0.45}},
+ {"nom":"P55","perillas":{"MAESTRO":1.65,"PROF":0.55}},
+ {"nom":"P70","perillas":{"MAESTRO":1.65,"PROF":0.70}},
+ {"nom":"P90","perillas":{"MAESTRO":1.65,"PROF":0.90}}
+]

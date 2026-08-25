@@ -1,0 +1,10 @@
+[
+ {"nom":"T38-D25-L40","perillas":{"MAESTRO":1.55,"PROF":0.60,"PEEL":4.0,"T0":3.8,"TD":2.5,"VIENTO_dB":1.5}},
+ {"nom":"T41-D27-L40","perillas":{"MAESTRO":1.55,"PROF":0.60,"PEEL":4.0,"T0":4.1,"TD":2.7,"VIENTO_dB":1.5}},
+ {"nom":"T41-D27-L55","perillas":{"MAESTRO":1.55,"PROF":0.60,"PEEL":5.5,"T0":4.1,"TD":2.7,"VIENTO_dB":1.5}},
+ {"nom":"T41-D30-L40","perillas":{"MAESTRO":1.55,"PROF":0.60,"PEEL":4.0,"T0":4.1,"TD":3.0,"VIENTO_dB":1.5}},
+ {"nom":"T45-D28-L45","perillas":{"MAESTRO":1.55,"PROF":0.60,"PEEL":4.5,"T0":4.5,"TD":2.8,"VIENTO_dB":1.5}},
+ {"nom":"T41-D27-L40-P70","perillas":{"MAESTRO":1.55,"PROF":0.70,"PEEL":4.0,"T0":4.1,"TD":2.7,"VIENTO_dB":1.5}},
+ {"nom":"T41-D27-L40-P50","perillas":{"MAESTRO":1.55,"PROF":0.50,"PEEL":4.0,"T0":4.1,"TD":2.7,"VIENTO_dB":1.5}},
+ {"nom":"T38-D25-L30","perillas":{"MAESTRO":1.55,"PROF":0.65,"PEEL":3.0,"T0":3.8,"TD":2.5,"VIENTO_dB":1.5}}
+]

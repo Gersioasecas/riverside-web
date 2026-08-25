@@ -1,0 +1,10 @@
+[
+ {"nom":"br-sinHP","gan":9,   "filtros":[["lowpass",140,0.707],["lowpass",140,0.707]]},
+ {"nom":"br-HP40", "gan":9,   "filtros":[["lowpass",140,0.707],["lowpass",140,0.707],["highpass",40,0.707]]},
+ {"nom":"br-HP80", "gan":11,  "filtros":[["lowpass",140,0.707],["lowpass",140,0.707],["highpass",80,0.707]]},
+ {"nom":"br-HP120","gan":13,  "filtros":[["lowpass",140,0.707],["lowpass",140,0.707],["highpass",120,0.707]]},
+ {"nom":"br-HP160","gan":16,  "filtros":[["lowpass",140,0.707],["lowpass",140,0.707],["highpass",160,0.707]]},
+ {"nom":"br-HP2x120","gan":15,"filtros":[["lowpass",140,0.707],["lowpass",140,0.707],["highpass",120,0.707],["highpass",120,0.707]]},
+ {"nom":"bp-300",  "gan":6,   "filtros":[["highpass",120,0.707],["highpass",120,0.707],["lowpass",300,0.707],["lowpass",300,0.707]]},
+ {"nom":"bp-ancho","gan":4,   "filtros":[["highpass",120,0.707],["highpass",120,0.707],["lowpass",900,0.707],["lowpass",1800,0.707]]}
+]

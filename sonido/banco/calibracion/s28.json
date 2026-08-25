@@ -1,0 +1,8 @@
+[
+ {"nom":"R-T40","perillas":{"MAESTRO":1.95,"PROF":0.75,"PEEL":2.0,"AMPJIT":0.45,"ANCHO_A":0.40,"ANCHO_B":1.10,"SESGO":0.0,"T0":4.0}},
+ {"nom":"R-T36","perillas":{"MAESTRO":1.95,"PROF":0.75,"PEEL":2.0,"AMPJIT":0.45,"ANCHO_A":0.40,"ANCHO_B":1.10,"SESGO":0.0,"T0":3.6}},
+ {"nom":"R-T40-P85","perillas":{"MAESTRO":1.95,"PROF":0.85,"PEEL":2.0,"AMPJIT":0.45,"ANCHO_A":0.40,"ANCHO_B":1.10,"SESGO":0.0,"T0":4.0}},
+ {"nom":"R-T55-b30","perillas":{"MAESTRO":1.95,"PROF":0.75,"PEEL":2.0,"AMPJIT":0.45,"ANCHO_A":0.30,"ANCHO_B":0.85,"SESGO":0.0,"T0":5.5}},
+ {"nom":"R-T40-L10","perillas":{"MAESTRO":1.95,"PROF":0.75,"PEEL":1.0,"AMPJIT":0.45,"ANCHO_A":0.40,"ANCHO_B":1.10,"SESGO":0.0,"T0":4.0}},
+ {"nom":"R-T40-b13","perillas":{"MAESTRO":1.95,"PROF":0.75,"PEEL":2.0,"AMPJIT":0.45,"ANCHO_A":0.45,"ANCHO_B":1.30,"SESGO":0.0,"T0":4.0}}
+]

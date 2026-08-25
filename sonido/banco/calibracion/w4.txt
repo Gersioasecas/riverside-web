@@ -1,0 +1,8 @@
+/tmp/mar-cal/sw/z-plano__1.wav
+/tmp/mar-cal/sw/z-plano__2.wav
+/tmp/mar-cal/sw/z-plano-hp120__1.wav
+/tmp/mar-cal/sw/z-plano-hp120__2.wav
+/tmp/mar-cal/sw/z-plano-hp300__1.wav
+/tmp/mar-cal/sw/z-plano-hp300__2.wav
+/tmp/mar-cal/sw/z-plano-t4__1.wav
+/tmp/mar-cal/sw/z-plano-t4__2.wav

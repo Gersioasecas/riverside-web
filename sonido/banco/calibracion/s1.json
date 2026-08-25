@@ -1,0 +1,8 @@
+[
+ {"nom":"a-p85","perillas":{"TILT":7.9,"MAESTRO":2.4,"PROF":0.85}},
+ {"nom":"b-p60","perillas":{"TILT":7.9,"MAESTRO":2.4,"PROF":0.60}},
+ {"nom":"c-p40","perillas":{"TILT":7.9,"MAESTRO":2.4,"PROF":0.40}},
+ {"nom":"d-p25","perillas":{"TILT":7.9,"MAESTRO":2.4,"PROF":0.25}},
+ {"nom":"e-p40-hp240","perillas":{"TILT":7.9,"FCORTE":240,"MAESTRO":2.4,"PROF":0.40}},
+ {"nom":"f-p40-hp150","perillas":{"TILT":7.9,"FCORTE":150,"MAESTRO":2.4,"PROF":0.40}}
+]

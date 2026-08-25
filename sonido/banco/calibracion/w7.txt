@@ -1,0 +1,8 @@
+/tmp/mar-cal/sw/suelo-R0__1.wav
+/tmp/mar-cal/sw/suelo-R0__2.wav
+/tmp/mar-cal/sw/suelo-R8f150__1.wav
+/tmp/mar-cal/sw/suelo-R8f150__2.wav
+/tmp/mar-cal/sw/suelo-R12f150__1.wav
+/tmp/mar-cal/sw/suelo-R12f150__2.wav
+/tmp/mar-cal/sw/suelo-R18f150__1.wav
+/tmp/mar-cal/sw/suelo-R18f150__2.wav

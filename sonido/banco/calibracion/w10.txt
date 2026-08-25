@@ -1,0 +1,12 @@
+/tmp/mar-cal/sw/M-k1500-t87-f110__1.wav
+/tmp/mar-cal/sw/M-k1500-t87-f110__2.wav
+/tmp/mar-cal/sw/M-k1500-t87-f150__1.wav
+/tmp/mar-cal/sw/M-k1500-t87-f150__2.wav
+/tmp/mar-cal/sw/M-k1200-t95-f110__1.wav
+/tmp/mar-cal/sw/M-k1200-t95-f110__2.wav
+/tmp/mar-cal/sw/M-k1800-t80-f110__1.wav
+/tmp/mar-cal/sw/M-k1800-t80-f110__2.wav
+/tmp/mar-cal/sw/M-k1500-t87-f80__1.wav
+/tmp/mar-cal/sw/M-k1500-t87-f80__2.wav
+/tmp/mar-cal/sw/M-k900-t105-f110__1.wav
+/tmp/mar-cal/sw/M-k900-t105-f110__2.wav

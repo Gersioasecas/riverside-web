@@ -1,0 +1,6 @@
+[
+ {"nom":"z-plano","perillas":{"MAESTRO":1.65,"PROF":0.001,"VIENTO_dB":0.001}},
+ {"nom":"z-plano-hp120","perillas":{"MAESTRO":1.65,"PROF":0.001,"VIENTO_dB":0.001,"FCORTE":120}},
+ {"nom":"z-plano-hp300","perillas":{"MAESTRO":1.65,"PROF":0.001,"VIENTO_dB":0.001,"FCORTE":300}},
+ {"nom":"z-plano-t4","perillas":{"MAESTRO":1.65,"PROF":0.001,"VIENTO_dB":0.001,"TILT":4.0}}
+]
