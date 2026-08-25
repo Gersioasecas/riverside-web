@@ -8,9 +8,17 @@
    una cosa y oirías otra.
 
    Dos capas, como en la playa:
-     · ROMPIENTE — ruido con un pasa-bajos que se abre al romper (300 → 1900 Hz)
-       y se cierra al retirarse. Es el siseo de la espuma.
-     · FONDO — ruido muy grave y constante, el rumor del mar que nunca para.
+     · ROMPIENTE — ruido con un pasa-bajos que se abre al romper (600 → 3800 Hz)
+       y se cierra al retirarse. Es el siseo de la espuma, y es lo que de
+       verdad se oye.
+     · FONDO — ruido grave y constante, el rumor del mar que nunca para.
+
+   ⚠️ NIVELES MEDIDOS, no elegidos a ojo. La primera versión cortaba en 300 Hz
+   y sonaba a −41 dBFS en la banda que un altavoz de laptop reproduce (>300 Hz):
+   Sergio no la oyó en absoluto. El mar de verdad tiene su carácter entre 500 y
+   4000 Hz, que es donde vive el siseo de la espuma. Esta versión mide −22 dBFS
+   en esa banda con pico 0.58, o sea sin recorte. Si alguien vuelve a tocar
+   estos números, que los MIDA: `~/.claude/skills/revisor/engine/_audio2.mjs`.
 
    Reglas:
      · NUNCA arranca solo. Los navegadores lo bloquean, y además sería una
@@ -45,7 +53,7 @@
       b3 = 0.86650 * b3 + w * 0.3104856;
       b4 = 0.55000 * b4 + w * 0.5329522;
       b5 = -0.7616 * b5 - w * 0.0168980;
-      d[i] = (b0 + b1 + b2 + b3 + b4 + b5 + b6 + w * 0.5362) * 0.11;
+      d[i] = (b0 + b1 + b2 + b3 + b4 + b5 + b6 + w * 0.5362) * 0.16;
       b6 = w * 0.115926;
     }
     return buf;
@@ -73,10 +81,10 @@
     rompiente = fuenteEnBucle(ruido);
     filtroR = ctx.createBiquadFilter();
     filtroR.type = 'lowpass';
-    filtroR.frequency.value = 400;
+    filtroR.frequency.value = 800;
     filtroR.Q.value = 0.7;
     ganR = ctx.createGain();
-    ganR.gain.value = 0.5;
+    ganR.gain.value = 0.85;
     rompiente.connect(filtroR).connect(ganR).connect(maestro);
     rompiente.start();
 
@@ -84,10 +92,10 @@
     const fondo = fuenteEnBucle(ruido);
     const filtroF = ctx.createBiquadFilter();
     filtroF.type = 'lowpass';
-    filtroF.frequency.value = 180;
+    filtroF.frequency.value = 220;
     filtroF.Q.value = 0.5;
     const ganF = ctx.createGain();
-    ganF.gain.value = 0.85;
+    ganF.gain.value = 0.40;
     fondo.connect(filtroF).connect(ganF).connect(maestro);
     fondo.start();
 
@@ -98,7 +106,7 @@
     if (!ctx) return;
     ctx.resume && ctx.resume();
     maestro.gain.cancelScheduledValues(ctx.currentTime);
-    maestro.gain.setTargetAtTime(0.16, ctx.currentTime, 1.1);   // entra despacio
+    maestro.gain.setTargetAtTime(0.52, ctx.currentTime, 0.55);   // entra en ~2 s
   }
   function bajar() {
     if (!ctx) return;
@@ -111,9 +119,9 @@
     pulso(s) {
       if (!sonando || !ctx || ctx.state !== 'running') return;
       suave += (s - suave) * 0.06;                 // sin chasquidos
-      const f = 300 + suave * 1600;                // se abre al romper
+      const f = 600 + suave * 3200;                // se abre al romper
       filtroR.frequency.setTargetAtTime(f, ctx.currentTime, 0.05);
-      ganR.gain.setTargetAtTime(0.24 + suave * 0.62, ctx.currentTime, 0.08);
+      ganR.gain.setTargetAtTime(0.5 + suave * 0.7, ctx.currentTime, 0.08);
     },
   };
 

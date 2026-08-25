@@ -13,13 +13,16 @@
    cabañas, el hotel y la palapa; el trazo de abajo = el agua que los rodea.
 
    QUÉ HACE:
-     · Un SEGMENTO del trazo del logo se desprende y baja con el usuario.
-       Nace blanco (espuma) y al alejarse se tiñe del azul de la marca.
-     · Ese segmento EMPUJA una marea: siete ondas superpuestas de azul casi
-       transparente que van cubriendo la página de arriba hacia abajo.
-     · La marea no sube pareja: cada onda avanza y se retira con su propio
-       ritmo, y todas juntas nunca llegan al mismo sitio a la vez.
-     · Sube hasta donde va leyendo el usuario, y ahí se queda respirando.
+     · Siete láminas de azul casi transparente van cubriendo la página de
+       arriba hacia abajo, hasta donde va leyendo el usuario.
+     · No suben parejas: cada una avanza y se retira con su propio ritmo, y
+       todas juntas nunca llegan al mismo sitio a la vez.
+     · Al llegar, se quedan ahí respirando.
+
+   (Hubo un segmento del trazo del logo que bajaba por delante empujándolas.
+    Se quitó el 2026-08-24: Sergio lo vio y no se leía como una pieza del logo
+    —«visualmente no es una piesa del logo ni sale del logo»—, así que sobraba.
+    La marea sola ya cuenta la historia.)
 
    LA FÍSICA (el árbitro, como siempre):
      · Una ola que besa la playa NO es una sinusoide. Sube rápido (uprush,
@@ -34,6 +37,9 @@
        mas caotico, menos perfecto».
      · El agua no rebota ni corrige su rumbo: llega hasta donde la lleva su
        energía y la fricción la detiene.
+     · Y no puede acelerar sin límite. Si alguien se lanza al pie de la página,
+       la marea se queda atrás y la alcanza a su propio paso (`TOPE`). Sin ese
+       techo, seguir el scroll se veía frenético.
      · Nada se mueve sin causa: sin scroll, la marea solo respira en su sitio.
    ========================================================================== */
 
@@ -49,7 +55,6 @@
   /* ── el azul de la marca, en crudo, para poder componerlo con alfa ────── */
   const AZUL = [16, 128, 208];      // #1080d0
   const AZUL_CLARO = [127, 182, 214];
-  const ESPUMA = [255, 255, 255];
 
   /* ── las siete ondas ───────────────────────────────────────────────────
      Los periodos son primos entre sí a propósito: así el conjunto tarda
@@ -73,6 +78,24 @@
   let W = 0, H = 0, dpr = 1;
   let frenteObjetivo = 0;     // dónde va leyendo el usuario (coords de documento)
   let frente = 0;             // dónde llegó el agua, con inercia
+  let vel = 0;                // su velocidad actual, en px/s
+  let msPrevio = null;
+
+  /* El agua NO puede acelerar sin límite. Si el usuario se lanza al pie de la
+     página, la marea se queda atrás y luego la alcanza a su propio paso: es lo
+     que la separa de un elemento que "persigue el scroll" a tirones.
+       RIGIDEZ  — con qué ganas responde (rad/s). Más alto = más pegado.
+       TOPE     — su velocidad máxima. Es el número que produce el rezago.
+
+     El tope NO es fijo: crece con la distancia, como crece la energía de una
+     ola cuanto más lejos rompe. Leyendo normal (200-400 px/s) el agua va
+     pegada; en un salto al pie de la página se queda muy atrás y luego viene
+     fuerte, frenando sola al llegar porque el muelle la amortigua.
+     Medido: con tope fijo de 780 px/s un salto de 4 000 px tardaba 5 s y
+     dejaba media página seca; así tarda unos 2.5 s.                          */
+  const RIGIDEZ = 2.1;
+  const TOPE_BASE = 700;
+  const TOPE_EXTRA = 950;
   let t0 = null;
   let rafId = null;
   let visible = true;
@@ -117,10 +140,21 @@
 
   function pintar(ms) {
     if (t0 === null) t0 = ms;
+    if (msPrevio === null) msPrevio = ms;
     const t = (ms - t0) / 1000;
+    // dt acotado: si la pestaña estuvo dormida, el salto no se convierte en un
+    // tirón al volver
+    const dt = Math.min(0.05, Math.max(0.001, (ms - msPrevio) / 1000));
+    msPrevio = ms;
 
-    // inercia: el agua alcanza a la mirada, nunca salta a ella
-    frente += (frenteObjetivo - frente) * 0.055;
+    /* Muelle con amortiguamiento crítico: llega y se detiene, nunca rebota.
+       La aceleración la fija la distancia; la velocidad tiene techo, y de ahí
+       sale el rezago cuando alguien baja de golpe. */
+    const dist = Math.abs(frenteObjetivo - frente);
+    const tope = TOPE_BASE + Math.min(TOPE_EXTRA, dist * 0.34);
+    const acel = (frenteObjetivo - frente) * RIGIDEZ * RIGIDEZ - vel * 2 * RIGIDEZ;
+    vel = Math.max(-tope, Math.min(tope, vel + acel * dt));
+    frente += vel * dt;
 
     ctx.clearRect(0, 0, W, H);
 
@@ -167,68 +201,10 @@
       ctx.fill();
     }
 
-    dibujarSegmento(t);
-
+    // el sonido lo modula la primera onda, la que rompe más cerca
     if (window.RiversideMar) window.RiversideMar.pulso(swash(t / ONDAS[0].periodo + ONDAS[0].fase));
 
     rafId = requestAnimationFrame(pintar);
-  }
-
-  /* ── el segmento desprendido ────────────────────────────────────────────
-     Un arco tomado del trazo inferior del logo. Va delante de todas las
-     ondas, empujándolas. Nace blanco (espuma recién rota) y se va tiñendo
-     del azul de la marca conforme se aleja de su origen.                    */
-  function dibujarSegmento(t) {
-    const s = swash(t / ONDAS[0].periodo + ONDAS[0].fase);
-    const yDoc = frente - ONDAS[0].retraso + ONDAS[0].amplitud * (s - 0.42);
-    const y = yDoc - window.scrollY;
-    if (y < -60 || y > H + 60) return;
-
-    // recorrido del documento: 0 al nacer, 1 al final
-    const viaje = Math.min(1, Math.max(0, window.scrollY / Math.max(1, alturaDoc - H)));
-    const tinte = Math.min(1, viaje * 1.9);            // se tiñe en el primer tercio
-
-    const col = ESPUMA.map((c, i) => Math.round(c + (AZUL[i] - c) * tinte));
-    const ancho = Math.min(W * 0.38, 340);
-    // deriva lateral: el segmento no baja en línea recta, lo lleva la corriente
-    const cx = W * 0.5 + Math.sin(t * 0.21) * W * 0.22 + Math.sin(t * 0.07 + 1.3) * W * 0.08;
-
-    ctx.save();
-    ctx.lineCap = 'round';
-    ctx.lineJoin = 'round';
-    ctx.shadowColor = `rgba(${col[0]},${col[1]},${col[2]},0.5)`;
-    ctx.shadowBlur = 16;
-
-    /* La forma sale del logo: el trazo de abajo son DOS líneas, una cresta
-       que se enrosca y una corriente larga por debajo. Aquí van las dos, la
-       segunda más tenue y desfasada, como el reflujo que sigue a la ola. */
-    const trazo = (desfase, grosor, opacidad) => {
-      ctx.beginPath();
-      ctx.moveTo(cx - ancho / 2, y + 11 + desfase);
-      ctx.bezierCurveTo(
-        cx - ancho * 0.24, y - 12 + desfase,
-        cx + ancho * 0.06, y - 16 + desfase,
-        cx + ancho * 0.27, y + 1 + desfase
-      );
-      ctx.bezierCurveTo(
-        cx + ancho * 0.38, y + 9 + desfase,
-        cx + ancho * 0.45, y + 12 + desfase,
-        cx + ancho / 2, y + 6 + desfase
-      );
-      ctx.strokeStyle = `rgba(${col[0]},${col[1]},${col[2]},${opacidad.toFixed(3)})`;
-      ctx.lineWidth = grosor;
-      ctx.stroke();
-    };
-
-    trazo(0, 3.4, 0.34 + 0.44 * s);          // la cresta
-    trazo(9, 1.8, (0.34 + 0.44 * s) * 0.42); // la corriente que la sigue
-
-    // la cresta rompiendo: el punto más brillante, justo donde el agua vuelca
-    ctx.beginPath();
-    ctx.arc(cx + ancho * 0.27, y + 1, 3.4, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(${col[0]},${col[1]},${col[2]},${(0.6 + 0.35 * s).toFixed(3)})`;
-    ctx.fill();
-    ctx.restore();
   }
 
   /* ── una sola imagen, para quien no quiere movimiento ───────────────── */
@@ -274,10 +250,9 @@
     }
     medir();
     mirar();
-    /* El agua NACE en el logo, no en cualquier parte: el trazo de abajo del
-       logotipo es literalmente de donde se desprende el segmento. Al cargar,
-       el frente arranca ahí y de inmediato empieza a perseguir la mirada, así
-       que el primer movimiento que se ve es el agua saliendo de la marca. */
+    /* El agua NACE a la altura del logo, no en cualquier parte: el trazo de
+       abajo del logotipo es la ola de la marca. Al cargar, el frente arranca
+       ahí y desde ese punto empieza a perseguir la mirada. */
     const marca = document.querySelector('[data-nace]');
     if (marca) {
       const r = marca.getBoundingClientRect();
@@ -285,6 +260,8 @@
     } else {
       frente = frenteObjetivo;
     }
+    vel = 0;
+    msPrevio = null;
     arrancar();
   }
 

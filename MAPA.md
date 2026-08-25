@@ -79,9 +79,13 @@ Antes de crear algo, mira si ya vive aquí.
 que corona TODOS los espacios del lugar (el hotel, las cabañas, la palapa), y el trazo de abajo
 es el agua que los rodea. El logo es literalmente el negocio.
 
-`marea.js` toma **un segmento de ese trazo**, lo desprende del logo (`[data-nace]`), lo hace
-bajar con el usuario tiñéndose de espuma blanca al azul de marca, y con él **empuja una marea**:
-siete láminas de azul casi transparente que suben hasta donde va leyendo.
+`marea.js` levanta **siete láminas de azul casi transparente** desde la altura del logo
+(`[data-nace]`) que van cubriendo la página hasta donde va leyendo el usuario.
+
+> Hubo una versión con un segmento del trazo bajando por delante y empujándolas. Sergio la vio
+> en vivo y la descartó: *«visualmente no es una piesa del logo ni sale del logo… mejor
+> omitamos del todo eso, solo dejemos la marea, ya es suficientemente linda por si sola»*.
+> **No reponerla.**
 
 **Reglas de esa animación (son gates, no gustos):**
 - **`swash()` es asimétrica**: 22 % subiendo (rápido) y 78 % retirándose (lento). Es lo que
@@ -91,12 +95,21 @@ siete láminas de azul casi transparente que suben hasta donde va leyendo.
   «redondea» esas longitudes a números bonitos, el patrón empieza a repetirse y se nota.
 - **Cada lámina se degrada hacia atrás** (`ALCANCE`). Sin eso, siete capas llenando hasta arriba
   acumulan un azul sólido que se come el texto.
+- **El agua no puede acelerar sin límite.** Muelle amortiguado críticamente + tope de velocidad
+  que crece con la distancia (`TOPE_BASE` + `TOPE_EXTRA`). Leyendo normal va pegada; en un salto
+  al pie se queda atrás ~1 s, entra a los 2 s y se asienta a los 3 s. Un lerp fijo se veía
+  frenético; un tope fijo dejaba media página seca cinco segundos. Los dos números están medidos
+  con `~/.claude/skills/revisor/engine/_rezago.mjs`.
 - El agua **no rebota**: no hay `bounce` ni `elastic` en ninguna curva del sitio.
 - La marea va **por debajo** del contenido (`z-index`). Si asoma sobre una foto, es un defecto.
 - El **sonido** (`mar.js`) lo modula la MISMA ola que se ve, vía `RiversideMar.pulso()`. No es un
   archivo: es ruido rosa filtrado. Y **nunca arranca solo**.
+- ⚠️ **Los niveles del sonido se MIDEN, no se eligen a ojo.** La primera versión cortaba en
+  300 Hz y daba −41 dBFS en la banda que un altavoz de laptop reproduce (>300 Hz): era
+  inaudible. Ahora corta entre 600 y 3800 Hz y mide −21 dBFS con pico 0.88 (sin recorte).
+  Banco de medición: `~/.claude/skills/revisor/engine/_audio2.mjs` y `_audio3.mjs`.
 - Con `prefers-reduced-motion` la marea se congela en una imagen quieta y agradable.
-- Medido: **106 FPS** con scroll continuo, canvas 1440×900.
+- Medido: **119 FPS** con scroll continuo, canvas 1440×900.
 
 ## ⚠️ Trampas
 
