@@ -72,7 +72,14 @@
 
   /* El fade de entrada es largo a propósito. Un ambiente que aparece de golpe
      sobresalta, que es justo lo contrario de lo que este sonido debe hacer. */
-  const NIVEL = 0.5;
+  /* El nivel del SITIO. La síntesis trae su propia calibración interna (la que
+     midió el banco) y no se toca: lo que se ajusta aquí es cuán lejos suena.
+
+     Sergio, tras oír la versión a 0.5: «siento que el volumen sigue ligeramente
+     alto, la idea es que incluso a volumen máximo de cualquier dispositivo
+     donde la abran sea un sonido tranquilo y a lo lejos». De ahí 0.27, que son
+     unos 5.4 dB menos. */
+  const NIVEL = 0.27;
   function subir() {
     if (!ctx) return;
     if (ctx.state === 'suspended') ctx.resume();
