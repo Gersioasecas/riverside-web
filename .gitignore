@@ -1,3 +1,8 @@
 .DS_Store
 node_modules/
 *.pre-regen-*
+
+# Material de referencia de terceros que descargaron las sesiones (patches de
+# Pure Data del libro de Farnell). Sirven para consultar, pero su licencia no
+# está clara y no son nuestros: se quedan en local.
+sonido/docs/referencias/
