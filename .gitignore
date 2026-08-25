@@ -2,7 +2,10 @@
 node_modules/
 *.pre-regen-*
 
+# Los WAV se regeneran con el banco; no tiene sentido versionar audio crudo.
+sonido/rendids/*.wav
+
 # Material de referencia de terceros que descargaron las sesiones (patches de
 # Pure Data del libro de Farnell). Sirven para consultar, pero su licencia no
-# está clara y no son nuestros: se quedan en local.
+# está clara y no son nuestros: viven en ~/Developer/riverside-referencias/
 sonido/docs/referencias/
