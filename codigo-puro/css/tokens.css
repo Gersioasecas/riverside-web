@@ -65,7 +65,10 @@
   --linea-honda:      #1d3d54;
 
   /* --- tipografía ------------------------------------------------------ */
-  --fuente-display: 'Newsreader', 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+  /* Cinzel es la tipografía REAL del logotipo de Riverside (la confirmó
+     Sergio). Es una romana de capitales: sus minúsculas son versalitas, por
+     eso todo lo que la use va en mayúsculas. */
+  --fuente-display: 'Cinzel', 'Trajan Pro', 'Optima', 'Palatino Linotype', Palatino, Georgia, serif;
   --fuente-texto:   'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
 
   /* escala mayor tercera (1.25) fluida entre 380px y 1440px */
@@ -82,14 +85,19 @@
 
   --peso-normal: 400;
   --peso-medio: 500;
-  --peso-fuerte: 700;
+  --peso-fuerte: 600;
+  /* Los títulos van en 400. Sergio: «que la de Tu descanso favorito no sea
+     taaan gruesa». En una romana de capitales el peso lo da el tamaño y el
+     tracking, no el grosor del trazo. */
+  --peso-display: 400;
 
-  --alto-apretado: 1.06;
-  --alto-titulo: 1.14;
+  --alto-apretado: 1.14;   /* las capitales no tienen descendentes: piden más aire */
+  --alto-titulo: 1.22;
   --alto-texto: 1.62;
 
   --track-ancho: 0.18em;   /* para los rótulos en versalitas */
-  --track-titulo: -0.015em;
+  --track-titulo: 0.05em;    /* las capitales necesitan aire entre letras */
+  --track-display: 0.085em;  /* y más aire cuanto más grandes son */
 
   /* --- espacio: escala de 4px ----------------------------------------- */
   --e-1: 0.25rem;  --e-2: 0.5rem;   --e-3: 0.75rem;  --e-4: 1rem;

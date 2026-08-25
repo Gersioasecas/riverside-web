@@ -52,9 +52,13 @@ a { color: inherit; }
 /* --- tipografía del documento ------------------------------------------- */
 h1, h2, h3 {
   font-family: var(--fuente-display);
-  font-weight: var(--peso-fuerte);
+  font-weight: var(--peso-display);
   line-height: var(--alto-titulo);
   letter-spacing: var(--track-titulo);
+  /* Cinzel es fuente de capitales: en minúsculas rinde versalitas y se ve
+     mal. El texto del HTML se queda en mayúsculas y minúsculas (para SEO y
+     lectores de pantalla) y aquí se presenta en caja alta. */
+  text-transform: uppercase;
   text-wrap: balance;
 }
 
