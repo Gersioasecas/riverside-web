@@ -325,3 +325,24 @@ ps aux | grep "[S]ecurityAgent"                                                 
 
 Si la red responde y `SecurityAgent` está vivo, **es el llavero, no GitHub**. La salida:
 que Sergio corra el push con `!` en su sesión, donde el diálogo sí llega a alguien.
+
+---
+
+## 🪶 TERCERA VUELTA — el pulido (2026-08-24, noche)
+
+Sergio lo vio en vivo y pidió tres cosas. Las tres están **en producción y medidas**.
+
+| Lo que dijo | Lo que se hizo | Medición |
+|---|---|---|
+| «si uno baja rapido la marea se retrase y luego alcance con suavidad… que no se vea frenetico» | Muelle amortiguado críticamente + tope de velocidad que **crece con la distancia** | Salto al 85 %: 1 s sin agua, entra a los 2 s, asentada a los 3 s. Un tope fijo de 780 px/s dejaba media página seca 5 s. |
+| «la linea curva que va por delante… no es una piesa del logo… mejor omitamos del todo eso» | Segmento eliminado, código y todo | FPS subió de 106 a **119** |
+| «el sonido de momento no lo escucho» | El lowpass cortaba en 300 Hz: **−41 dBFS** en la banda que un altavoz de laptop reproduce. Ahora corta 600→3800 Hz | **−21 dBFS** audibles, pico 0.88 sin recorte, 5.6 dB de dinámica |
+
+⛔ **No reponer el segmento.** Sergio lo descartó viéndolo, no en abstracto.
+
+⚠️ **Los niveles de audio se MIDEN.** Bancos: `_audio2.mjs` (comparar configuraciones por banda)
+y `_audio3.mjs` (medir con la modulación real). El rezago: `_rezago.mjs`. Todos en
+`~/.claude/skills/revisor/engine/`.
+
+**En vivo y verificado** (`f07aabd`): HTTPS 200, Cinzel, 8/8 fotos, 4 secciones, la marea
+pintando, 0 errores, 0 recursos rotos.
