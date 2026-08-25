@@ -99,7 +99,14 @@ título que el agua toca se queda con una marca de agua debajo, para siempre.
 6. **Las rutas de recurso son RELATIVAS** (`img/…`, no `/img/…`) para que el sitio cargue igual
    en el dominio y en la URL de previsualización con subcarpeta. El `404.html` sí las lleva
    absolutas, porque puede servirse desde cualquier ruta.
-7. **`home-1100` y `restaurante-1100` no existen a propósito**: al recortar a 4:5 esas fotos
+7. **⚠️ NO empujes mientras GitHub esté emitiendo el certificado del dominio.** Con
+   `build_type: workflow`, cada despliegue relee el `CNAME` del artefacto y **reinicia el
+   aprovisionamiento del certificado**. El 2026-08-24 tres pushes seguidos dejaron el
+   certificado sin emitirse durante 90 minutos: el objeto `https_certificate` ni siquiera
+   llegaba a existir. **El destrabe** es quitar el dominio por API (`PUT /pages` con
+   `{"cname": null}`), esperar ~3 min y volver a ponerlo; el estado pasa entonces a
+   `authorization_pending`, que es la señal de que sí arrancó.
+8. **`home-1100` y `restaurante-1100` no existen a propósito**: al recortar a 4:5 esas fotos
    quedan por debajo de 1100px de ancho. El `srcset` ya lo contempla.
 
 ## Correr y probar
