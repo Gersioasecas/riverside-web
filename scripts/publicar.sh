@@ -19,7 +19,8 @@ grep -q "riversidechachalacas.com.mx" codigo-puro/CNAME || { echo "❌ CNAME con
 # sloplint bloquea CUALQUIER regla que no esté justificada por escrito en
 # docs/SLOPLINT-ACEPTADOS.md. Aceptar una regla nueva exige agregarla ahí con
 # la medición que la desmiente — no basta con silenciarla.
-ACEPTADAS="low-contrast"
+ACEPTADAS="low-contrast
+overused-font"
 if command -v sloplint >/dev/null 2>&1; then
   echo "▸ sloplint"
   SALIDA="$(sloplint codigo-puro/index.html codigo-puro/css/ 2>&1 || true)"

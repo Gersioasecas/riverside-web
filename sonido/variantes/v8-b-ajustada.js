@@ -1,43 +1,4 @@
 /* ============================================================================
-   LA SÍNTESIS DEL MAR — modelo físico de burbujas, ajustado por Sergio
-   ----------------------------------------------------------------------------
-   Este archivo es `sonido/variantes/v8-b-ajustada.js` SIN TOCAR, envuelto en
-   unas líneas que lo enganchan al sitio. Se copia literal a propósito: cada
-   número salió de una medición, y reescribirlo «para producción» es la mejor
-   manera de perderlos por el camino.
-
-   ── POR QUÉ ÉSTA ──────────────────────────────────────────────────────────
-   Se midieron siete variantes contra el perfil de un mar real y tres pasaron
-   las ocho métricas. Sergio las escuchó y eligió el modelo físico:
-
-     «la que mejor hace el sonido real del mar como ola individual es sin duda
-      la B, la de burbujas… esa es espectacular como ola individual»
-
-   Y dio tres ajustes, que son los que separan esta versión de la v4 original:
-     · volumen a la mitad (MAESTRO 2.2 → 1.1), para que suene más lejos
-     · una ola cada 4-5 s en vez de cada 2, y con poco vaivén: un solo tren a
-       4.6 s con VAIVEN 0.13. Antes eran SEIS trenes y sonaba a «rush»
-     · olas mucho más largas y simétricas: ataque 0.12 → 1.70 s, cola 0.60 →
-       1.55 s, de modo que el retroceso dure casi lo que la entrada
-
-   Con olas de ~9 s cada 4.6 s, cada una empieza cuando la anterior va por la
-   mitad: el mar no se queda nunca en silencio, que es lo que él observó.
-
-   ── UNA NOTA SOBRE LA MÉTRICA ─────────────────────────────────────────────
-   `perio` subió de 0.21 a 0.33. **No es un bucle**: el pico está a 4.5 s, que
-   es justo el ritmo de las olas que él pidió «casi constante». La métrica
-   penaliza la regularidad, y aquí la regularidad es el encargo.
-
-     archivo        pend  perio barrid  suave olas/m cresta    st  aud dB
-     v4 original    -4.6   0.21   0.41   0.05   10.7   14.4   0.43   -21.3
-     v8 ajustada    -4.6   0.33   0.42  -0.02   12.0   15.1   0.55   -26.1
-
-   El arranque, el fundido y el interruptor viven en `mar.js`.
-   La acústica que justifica cada capa, en `sonido/docs/ACUSTICA.md`.
-   El banco que mide todo esto, en `sonido/banco/`.
-   ========================================================================== */
-
-/* ============================================================================
    v4 · EL MODELO FÍSICO — el mar no se filtra, se fabrica burbuja por burbuja
    ----------------------------------------------------------------------------
    LA IDEA. Casi todo el sonido de una ola rompiendo lo hacen las BURBUJAS de
@@ -569,26 +530,3 @@ function construirMar(ctx, dur) {
      en la métrica pero abre un agujero de 9 dB entre 400 y 1100 Hz, que es
      justo donde el mar real tiene su máximo.
    ========================================================================== */
-
-
-/* ── el enganche con el sitio ─────────────────────────────────────────────
-   `mar.js` llama a esto una sola vez, tras el primer gesto del visitante, y
-   vuelve a llamarlo cada ventana para que el mar no se acabe nunca. */
-(() => {
-  const VENTANA = 240, ANTES = 40;
-  window.sintetizarMar = function (ctx, salida) {
-    const destino = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(ctx), 'destination')
-                 || Object.getOwnPropertyDescriptor(ctx, 'destination');
-    let hasta = 0;
-    const tejer = () => {
-      if (hasta > ctx.currentTime + ANTES) return;
-      Object.defineProperty(ctx, 'destination', { value: salida, configurable: true });
-      try { construirMar(ctx, VENTANA); } finally {
-        if (destino) Object.defineProperty(ctx, 'destination', destino);
-      }
-      hasta = ctx.currentTime + VENTANA;
-    };
-    tejer();
-    setInterval(tejer, 30000);
-  };
-})();

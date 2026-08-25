@@ -70,6 +70,9 @@
      eso todo lo que la use va en mayúsculas. */
   --fuente-display: 'Cinzel', 'Trajan Pro', 'Optima', 'Palatino Linotype', Palatino, Georgia, serif;
   --fuente-texto:   'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  /* El «CHACHALACAS» que va debajo de RIVERSIDE en el logotipo NO es Cinzel:
+     es Montserrat delgada. Lo corrigió Sergio, que conoce su propio logo. */
+  --fuente-marca-2: 'Montserrat', -apple-system, 'Segoe UI', system-ui, sans-serif;
 
   /* escala mayor tercera (1.25) fluida entre 380px y 1440px */
   --paso--2: clamp(0.72rem, 0.70rem + 0.10vw, 0.78rem);

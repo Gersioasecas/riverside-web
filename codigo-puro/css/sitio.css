@@ -75,10 +75,12 @@
 }
 .nav__nombre em {
   font-style: normal;
-  font-size: 0.62em;
-  font-weight: var(--peso-normal);
-  letter-spacing: 0.2em;
-  opacity: 0.72;
+  /* Montserrat delgada, no Cinzel: así es el logotipo de verdad */
+  font-family: var(--fuente-marca-2);
+  font-size: 0.66em;
+  font-weight: 300;
+  letter-spacing: 0.26em;
+  opacity: 0.8;
 }
 
 .nav__menu { display: flex; align-items: center; gap: clamp(var(--e-3), 1.7vw, var(--e-5)); }
@@ -418,10 +420,11 @@
 .pie__nombre em {
   display: block;
   font-style: normal;
-  font-size: 0.55em;
-  font-weight: var(--peso-normal);
-  letter-spacing: 0.22em;
-  opacity: 0.7;
+  font-family: var(--fuente-marca-2);
+  font-size: 0.58em;
+  font-weight: 300;
+  letter-spacing: 0.28em;
+  opacity: 0.78;
 }
 .pie__lugar { margin-top: var(--e-3); max-width: 22ch; }
 

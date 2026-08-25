@@ -26,3 +26,22 @@ Todo pasa AA. Los iconos, además, llevan `drop-shadow` para despegarlos de la a
 
 ⚠️ **Si se cambia la foto del hero, esta medición hay que repetirla.** El script está en
 `~/.claude/skills/revisor/engine/_fondo.mjs`.
+
+## `overused-font`
+
+**Por qué dispara:** el sitio carga **Montserrat**, que está en la lista de tipografías tan
+usadas que ya no distinguen a nadie.
+
+**Por qué se acepta aquí:** no es una elección estética. Montserrat delgada **es la tipografía
+del logotipo de Riverside** — el «CHACHALACAS» que va debajo de «RIVERSIDE». Lo corrigió Sergio
+el 2026-08-25, que conoce su propia marca:
+
+> «la letra de el "CHACHALACAS" que va debajo del riverside en el logo no debe ser cinzel, esa es
+> montserrat thin»
+
+La regla existe para castigar el reflejo de elegir Montserrat por defecto. Usarla porque es la
+del logo real es lo contrario de ese reflejo: es fidelidad a la marca.
+
+**Alcance:** se usa **solo** en esas dos palabras (`.nav__nombre em` y `.pie__nombre em`). El
+resto del sitio es Cinzel para display y DM Sans para el cuerpo. Si alguna vez Montserrat empieza
+a aparecer en párrafos o botones, esta justificación ya no vale y el hallazgo vuelve a ser real.
