@@ -372,19 +372,19 @@
   transform-origin: bottom center;
   transition: transform var(--t-rapido) var(--curva-suave), opacity var(--t-rapido) var(--curva-suave);
 }
-.mar[aria-pressed='true'] .mar__ondas i {
+.mar[aria-checked='true'] .mar__ondas i {
   opacity: 1;
   animation: ondear 2.9s var(--curva-suave) infinite;
 }
-.mar[aria-pressed='true'] .mar__ondas i:nth-child(2) { animation-delay: 0.42s; animation-duration: 3.7s; }
-.mar[aria-pressed='true'] .mar__ondas i:nth-child(3) { animation-delay: 0.91s; animation-duration: 2.3s; }
+.mar[aria-checked='true'] .mar__ondas i:nth-child(2) { animation-delay: 0.42s; animation-duration: 3.7s; }
+.mar[aria-checked='true'] .mar__ondas i:nth-child(3) { animation-delay: 0.91s; animation-duration: 2.3s; }
 @keyframes ondear {
   0%, 100% { transform: scaleY(0.36); }
   22%      { transform: scaleY(1); }     /* sube rápido, como la ola */
   70%      { transform: scaleY(0.5); }   /* y se retira despacio */
 }
 @media (prefers-reduced-motion: reduce) {
-  .mar[aria-pressed='true'] .mar__ondas i { animation: none; transform: scaleY(0.7); }
+  .mar[aria-checked='true'] .mar__ondas i { animation: none; transform: scaleY(0.7); }
 }
 @media (max-width: 640px) {
   .mar { inset-block-end: var(--e-3); inset-inline-end: var(--e-3); padding: 0.55em 0.8em; }

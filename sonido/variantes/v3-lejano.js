@@ -7,6 +7,7 @@ function construirMar(ctx, dur) {
   const FCORTE    = 190;    // Hz del highpass
   const RETUMBO   = 0;      // dB de realce del grave (lowshelf)
   const RETUMBO_F = 170;    // Hz de ese realce
+  const FRODILLA  = 1500;   // Hz donde empieza la caída de agudos
   const NHP       = 2;
   const MAESTRO   = 4.6;
   const NVOCES    = 21;
@@ -77,7 +78,7 @@ function construirMar(ctx, dur) {
     ls.type = 'lowshelf'; ls.frequency.value = RETUMBO_F; ls.gain.value = RETUMBO;
     nodo = nodo.connect(ls);
   }
-  for (const f0 of [250, 500, 1000, 2000, 4000, 8000, 16000]) {
+  for (const f0 of [FRODILLA, FRODILLA*2, FRODILLA*4, FRODILLA*8]) {
     const f = ctx.createBiquadFilter();
     f.type = 'highshelf'; f.frequency.value = f0; f.gain.value = -TILT;
     nodo = nodo.connect(f);
