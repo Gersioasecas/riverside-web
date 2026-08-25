@@ -267,3 +267,45 @@ Sin tocar: el correo `reservaciones@`, el dominio, ni nada de `riversidehotel.co
 3. El sitio `zeromkting.wordpress.com` se llama internamente **«SENUSA»** y tiene el dominio
    `zeromkting.com`. Vale la pena que Sergio revise por qué.
 4. WordPress le cobra **MX$10,986 al año** entre 10 suscripciones.
+
+---
+
+## 🌊 SEGUNDA MISIÓN — la marea (2026-08-24, tarde)
+
+**Verbatim de Sergio:**
+
+> «el logo pretende ser una ola del mar debajo del triangulo, esto es porque literalmente
+> todaaas las opciones como verás en las propias fotos tienen techos de dos aguas o mas,
+> haciendo espacios coronados por triangulos siempre… tomar una sección de ese flujo,
+> desprenderla y que al moverse pase de espuma blanca del mar al tono azul… y que al bajar
+> empuje una marea azul muy tenue que vaya cubriendo la pagina… con avances y retrocesos…
+> como el patrón de interferencia que se genera el experimento de la doble rendija… pero un
+> poco mas caotico, menos perfecto… estamos transmitiendo la relajación que da el suave
+> movimiento y sonido de las olas un día de mar muy tranquilo»
+
+Más dos correcciones de tipografía: **Cinzel** es la del logo (y va en capitales), y el H1 no
+debe ser tan grueso.
+
+### ✅ Hecho y medido
+
+| | |
+|---|---|
+| Tipografía | **Cinzel** 400 en capitales para logotipo, H1 y nombres. DM Sans para el cuerpo. |
+| El segmento | Nace en `[data-nace]` (el logo), doble trazo —cresta + corriente—, de espuma blanca al azul de marca según el viaje. |
+| La marea | 7 láminas, `swash()` asimétrica (22 % sube / 78 % se retira), borde por interferencia de 3 senos inconmensurables + deriva lenta. Cada lámina se degrada hacia atrás. |
+| Estructura | Una sección por negocio: el recorrido pasó de 2 261 px a 4 720 px. |
+| Sonido | Sintetizado con Web Audio (ruido rosa filtrado), modulado por la MISMA ola vía `RiversideMar.pulso()`. Nunca arranca solo. |
+| Rendimiento | **106 FPS** con scroll continuo. |
+| Accesibilidad | Contraste medido **sobre la marea pintada**, en 7 posiciones de scroll: todo pasa AA, mínimo 5.04. |
+| Anchos | Sin desbordes de 320 a 2560 px. |
+| `sloplint` | Limpio salvo el falso positivo documentado. |
+| Consola | 0 errores. |
+
+### 🛑 Parqueado (R6)
+
+**El push está bloqueado por el llavero.** `security find-internet-password -s github.com -w`
+vuelve a abrir el diálogo de autorización y se queda esperando; los `git push` que parecían
+"colgarse por red" en realidad esperaban ahí. Verificado que la red está perfecta:
+`github.com` responde en 0.73 s y el endpoint `git-receive-pack` da 401 en 0.27 s sin token.
+
+Todo está committeado en `main` (`5e86da1`). Falta un solo `git push`.
