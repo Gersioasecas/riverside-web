@@ -346,3 +346,51 @@ y `_audio3.mjs` (medir con la modulación real). El rezago: `_rezago.mjs`. Todos
 
 **En vivo y verificado** (`f07aabd`): HTTPS 200, Cinzel, 8/8 fotos, 4 secciones, la marea
 pintando, 0 errores, 0 recursos rotos.
+
+---
+
+## 🌊 CUARTA VUELTA — el sonido del mar (2026-08-24/25)
+
+**Verbatim de Sergio:** «no suena para nada como las suaves olas, suena mas como el sonido de un
+bong en la filarmonica cuando el sonido se queda largo… no hay multiples olas suavemente
+superponiendose». Y: que suene al entrar, con el botón para desactivar, no para activar.
+
+### El diagnóstico, que solo apareció midiendo
+
+No era un tono: era el **centro tímbrico paseando 2.55 octavas**, y el oído lo sigue como una
+nota. Se montó un banco (`sonido/banco/`) que renderiza a WAV y mide ocho métricas.
+
+| | pend | perio | barrid | suave | olas/m | cresta | st | aud dB |
+|---|---|---|---|---|---|---|---|---|
+| **objetivo** | −4..−7 | <0.25 | <0.8 | <0.6 | 8-20 | 8-16 | .2-.7 | −26..−18 |
+| v0 «el bong» | −2.8 | 0.51 | **2.55** | 0.42 | 8.0 | 13.6 | 1.00 | −27.3 |
+| v1 filtros quietos | −1.9 | 0.12 | **2.37** | 0.35 | 14.0 | 7.2 | 0.75 | −20.3 |
+| v2 envolvente global | −2.1 | 0.06 | 1.71 | 0.03 | 22.7 | 14.1 | 0.76 | −28.3 |
+| v6 la receta medida | −3.7 | 0.64 | 0.40 | 0.06 | 2.7 | 13.1 | 0.98 | −25.5 |
+| v7 + lecho arreglado | −3.5 | 0.26 | 0.63 | 0.16 | 5.3 | 16.8 | 0.37 | −31.7 |
+| v3 lejano (sesión) | −5.9 | 0.05 | 0.52 | −0.00 | 6.7 | 13.9 | 0.51 | −27.0 |
+| **v5 granular (sesión)** | **−5.1** | **0.11** | **0.49** | **0.00** | **10.7** | **13.5** | **0.49** | **−22.0** ← publicada |
+
+**v5 es la única que cae dentro de las ocho.** Verificada también a 48 kHz.
+
+### Lo que corrigió la investigación (13 agentes, verificación adversarial)
+
+- **Los periodos eran de otro océano.** 9-26 s es swell del Pacífico; la boya NDBC 42055 de la
+  Bahía de Campeche —el mismo Golfo que Chachalacas— mide **Tm02 = 3.64 s**. Faltaban olas.
+- **Faltaba la espuma retrasada** 1.5-3 s tras el pico de cada ola: ese desfase es lo que hace
+  que el oído reconozca agua.
+- **El sonido no lo hace el impacto del agua, lo hacen las burbujas** (Nature 2018: si se impide
+  la burbuja, no hay sonido en absoluto).
+
+### El instrumento mintió cuatro veces
+
+Artefacto de borde en el suavizado · varianza del periodograma (Welch) · contar la suavidad a
+retardos cortos como si fuera un bucle · confundir nivel por tercio de octava con densidad
+espectral (lo cazó la sesión granular). **Cada corrección se validó con ruido de control.**
+
+### El arranque
+
+Suena al **primer gesto** (scroll, clic, tecla, toque) con fundido de 4 s. No puede sonar antes:
+un `AudioContext` creado sin gesto nace `suspended` — política de Chrome desde la 71, y Safari y
+Firefox igual. WCAG 1.4.2 exige mecanismo de pausa para audio automático de más de 3 s: el botón
+lo es, con `role="switch"`, siempre visible y operable con teclado. Si lo silencia, se recuerda.

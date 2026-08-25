@@ -36,7 +36,8 @@ riverside-web/
 │   │   └── sitio.css            composición de cada sección
 │   ├── js/
 │   │   ├── marea.js             🏠 la animación firma (ver abajo)
-│   │   ├── mar.js               🏠 el sonido, sintetizado con Web Audio
+│   │   ├── mar.js               🏠 arranque, fundido e interruptor del sonido
+│   │   ├── sintesis-mar.js      🏠 la síntesis (copia literal de la variante ganadora)
 │   │   └── sitio.js             nav que se posa · aparición al entrar · año del pie
 │   └── img/                     avif + webp + jpg de respaldo, generados
 │
@@ -51,6 +52,13 @@ riverside-web/
 │   ├── servir.py                servidor local CONCURRENTE (el de un hilo se atasca)
 │   ├── esperar-https.sh         vigila el certificado y fuerza HTTPS al emitirse
 │   └── publicar.sh              ★ el único comando de despliegue
+│
+├── sonido/                      ★ el laboratorio del sonido (NO se publica)
+│   ├── PROTOCOLO.md             el encargo y el objetivo numérico
+│   ├── banco/render.mjs         variante → WAV (acepta 44.1 o 48 kHz)
+│   ├── banco/analizar.py        mide un WAV contra el perfil de un mar real
+│   ├── variantes/*.js           las siete candidatas, con su razonamiento
+│   └── docs/ACUSTICA.md         100 hallazgos verificados + 5 recetas
 │
 ├── docs/DOMINIO-Y-DNS.md        qué registro se toca y cuál mataría el correo
 └── .github/workflows/publicar.yml   push a main → GitHub Pages
@@ -67,7 +75,9 @@ Antes de crear algo, mira si ya vive aquí.
 | Estilo de botón | `css/base.css` (`.boton` + modificadores) | un botón nuevo desde cero |
 | Un tipo de sección | `css/sitio.css` | duplicar la retícula |
 | La animación firma | `js/marea.js` | una segunda librería de scroll |
-| El sonido | `js/mar.js` (Web Audio, sintetizado) | meter un mp3 de olas: se desincroniza de lo que se ve |
+| El arranque y el interruptor del sonido | `js/mar.js` | tocar la síntesis desde aquí |
+| La síntesis del mar | `js/sintesis-mar.js` (copia literal de `sonido/variantes/v5-granular.js`) | reescribirla «para producción»: cada número salió de una medición |
+| Probar un cambio de sonido | `sonido/banco/` (renderiza y mide) | ajustar de oído — nadie aquí puede escucharlo |
 | Reveal al entrar en cuadro | `js/sitio.js` (`[data-sube]`) | otro IntersectionObserver |
 | Procesar una imagen nueva | `scripts/imagenes.py` (añádela al dict `PLAN`) | meter un jpg a pelo en `img/` |
 | Publicar | `scripts/publicar.sh` | `git push` a mano |
@@ -133,7 +143,17 @@ es el agua que los rodea. El logo es literalmente el negocio.
    llegaba a existir. **El destrabe** es quitar el dominio por API (`PUT /pages` con
    `{"cname": null}`), esperar ~3 min y volver a ponerlo; el estado pasa entonces a
    `authorization_pending`, que es la señal de que sí arrancó.
-8. **`home-1100` y `restaurante-1100` no existen a propósito**: al recortar a 4:5 esas fotos
+8. **⚠️ EL SONIDO NO SE AJUSTA DE OÍDO.** Hay un banco que renderiza a WAV y mide ocho métricas
+   contra un mar real (`sonido/banco/`). Se usó porque el primer intento sonaba a «un bong en la
+   filarmónica» y el diagnóstico solo apareció al medirlo: **el centro tímbrico paseaba 2.55
+   octavas** y el oído lo sigue como una nota. Está en 0.49.
+   El banco **mintió cuatro veces** antes de ser fiable — un artefacto de borde, la varianza del
+   periodograma (resuelta con Welch), contar la suavidad como bucle, y confundir nivel por tercio
+   de octava con densidad espectral. **Valida siempre con ruido de control** antes de creerle:
+   blanco +3.0 · rosa 0.0 · marrón −3.0 de pendiente.
+9. **El navegador abre el audio a 48 kHz, no a 44.1.** Una variante probada solo a 44.1 puede
+   degradarse: `node render.mjs <v.js> <s.wav> 45 48000`.
+10. **`home-1100` y `restaurante-1100` no existen a propósito**: al recortar a 4:5 esas fotos
    quedan por debajo de 1100px de ancho. El `srcset` ya lo contempla.
 
 ## Correr y probar
