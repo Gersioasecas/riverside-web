@@ -301,11 +301,27 @@ debe ser tan grueso.
 | `sloplint` | Limpio salvo el falso positivo documentado. |
 | Consola | 0 errores. |
 
-### 🛑 Parqueado (R6)
+### ✅ EN VIVO desde el 2026-08-24
 
-**El push está bloqueado por el llavero.** `security find-internet-password -s github.com -w`
-vuelve a abrir el diálogo de autorización y se queda esperando; los `git push` que parecían
-"colgarse por red" en realidad esperaban ahí. Verificado que la red está perfecta:
-`github.com` responde en 0.73 s y el endpoint `git-receive-pack` da 401 en 0.27 s sin token.
+Sergio empujó desde su terminal (`16058b8..879a59f`) y la acción desplegó en verde.
+Verificado en `https://riversidechachalacas.com.mx`: HTTP/2 200, certificado
+`CN=riversidechachalacas.com.mx` intacto tras el push, **Cinzel** cargada, 8/8 fotos,
+4 secciones de estancia, la marea pintando (`rgba(0,68,136,0.059)` medido a media pantalla),
+el botón del mar presente, **0 errores de consola y 0 recursos rotos**.
 
-Todo está committeado en `main` (`5e86da1`). Falta un solo `git push`.
+### 🔑 La lección del llavero (fue lo que costó la última hora)
+
+`security find-internet-password -s github.com -w` desde una sesión no interactiva **abre un
+diálogo de `SecurityAgent` que nadie atiende**, y el comando se queda esperando para siempre.
+Los `git push` que parecían "colgarse por red" esperaban ahí. Diagnóstico que lo separa de un
+problema real de red, en tres comandos:
+
+```bash
+curl -sS -o /dev/null -w "%{http_code} %{time_total}\n" https://github.com/         # 200 en 0.7 s
+curl -sS -o /dev/null -w "%{http_code} %{time_total}\n" \
+  "https://github.com/<o>/<r>.git/info/refs?service=git-receive-pack"                # 401 en 0.3 s
+ps aux | grep "[S]ecurityAgent"                                                      # ← el culpable
+```
+
+Si la red responde y `SecurityAgent` está vivo, **es el llavero, no GitHub**. La salida:
+que Sergio corra el push con `!` en su sesión, donde el diálogo sí llega a alguien.
