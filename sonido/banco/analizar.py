@@ -43,7 +43,15 @@ def tercios_de_octava(sr, x):
 
 
 def pendiente_db_oct(bandas, desde=250, hasta=8000):
-    """Pendiente espectral en dB/octava. Ruido rosa ≈ -3, marrón ≈ -6."""
+    """
+    Pendiente en dB/octava del NIVEL POR TERCIO DE OCTAVA (no de la densidad
+    espectral: las dos se llevan por dB/oct = 3.01·(1−α)).
+
+    ⚠️ Corregido el 2026-08-25: el comentario decía «rosa ≈ −3, marrón ≈ −6»,
+    que son los valores de la DENSIDAD. Medido aquí mismo con controles:
+        blanco  +3.0   ·   rosa  0.0   ·   marrón  −3.0
+    Para caer en el objetivo de −4 a −7 hay que ir MÁS oscuro que marrón.
+    """
     pts = [(math.log2(c), d) for c, d in bandas if desde <= c <= hasta]
     if len(pts) < 3:
         return float('nan')
@@ -219,12 +227,20 @@ def analizar(ruta):
 
 OBJETIVO = """
 CÓMO SE LEE (perfil de un mar tranquilo y lejano, de la investigación):
-  pendiente      −4 a −7 dB/oct entre 250 Hz y 8 kHz. Rosa es −3, marrón −6.
-                 Un mar LEJANO tira a marrón: el aire se come los agudos.
+  pendiente      −4 a −7 dB/oct entre 250 Hz y 8 kHz, medido como nivel por
+                 tercio de octava: blanco +3, rosa 0, marrón −3. El objetivo
+                 pide MÁS oscuro que marrón, porque un mar lejano lo es: el
+                 aire se come los agudos con la distancia.
   periodicidad   < 0.25. Por encima de ~0.4 el oído caza la repetición.
   barrid         < 0.8 octavas. Es EL número del «bong»: cuánto pasea el
                  centro tímbrico. Un filtro barriendo lo mueve 2-3 octavas y
-                 el oído lo sigue como una nota. El agua lo mueve poco.
+                 el oído lo sigue como una nota.
+                 ⚠️ OJO AL PISO: con ventanas de 4096, ruido ROSA quieto ya
+                 marca 1.16 y marrón 0.69, sin modular nada — un espectro
+                 oscuro concentra energía en pocos bins y el centroide tiembla
+                 solo. Ser oscuro ya gasta parte del presupuesto. Para saber
+                 cuánto es diseño y cuánto es piso, congela el oleaje de tu
+                 propia variante y compara: en v5 el oleaje entero cuesta 0.02.
   suave          < 0.6. Autocorrelación del recorrido del centroide a 1 s.
                  Cerca de 1 significa que se mueve liso y predecible: un LFO.
                  El agua real da un recorrido irregular.

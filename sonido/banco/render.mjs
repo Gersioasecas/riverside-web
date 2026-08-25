@@ -17,13 +17,16 @@ import puppeteer from 'puppeteer-core';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { basename } from 'node:path';
 
-const [, , ruta, salida, segArg] = process.argv;
+const [, , ruta, salida, segArg, srArg] = process.argv;
 if (!ruta || !salida) {
   console.error('uso: node render.mjs <variante.js> <salida.wav> [segundos]');
   process.exit(1);
 }
 const SEG = Number(segArg) || 30;
-const SR = 44100;
+// El navegador suele abrir el contexto a 48 kHz, no a 44.1. Una variante que
+// solo se probó a 44.1 puede sonar distinta en producción: la sesión granular
+// avisó de que a 48 kHz la mitad de sus semillas se salían de rango.
+const SR = Number(srArg) || 44100;
 const codigo = readFileSync(ruta, 'utf8');
 
 const navegador = await puppeteer.launch({
@@ -70,4 +73,4 @@ cab.writeUInt16LE(4, 32); cab.writeUInt16LE(16, 34);
 cab.write('data', 36); cab.writeUInt32LE(datos.length, 40);
 writeFileSync(salida, Buffer.concat([cab, datos]));
 
-console.log(`${basename(ruta).padEnd(26)} → ${basename(salida)}  ${SEG}s  pico ${pico.toFixed(3)}${pico > 0.99 ? '  ❌ RECORTA' : ''}`);
+console.log(`${basename(ruta).padEnd(26)} → ${basename(salida)}  ${SEG}s @${SR/1000}k  pico ${pico.toFixed(3)}${pico > 0.99 ? '  ❌ RECORTA' : ''}`);

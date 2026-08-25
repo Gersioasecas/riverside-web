@@ -1,31 +1,4 @@
 /* ============================================================================
-   LA SÍNTESIS DEL MAR — la variante ganadora del banco, tal cual
-   ----------------------------------------------------------------------------
-   Este archivo es `sonido/variantes/v5-granular.js` SIN TOCAR, envuelto en
-   tres líneas que lo enganchan al sitio. Se copia literal a propósito: cada
-   número de aquí abajo salió de una medición, y reescribirlo «para producción»
-   es la mejor manera de perderlos por el camino.
-
-   Cómo se eligió (banco en sonido/banco/, objetivo en sonido/PROTOCOLO.md):
-
-     archivo         pend  perio barrid  suave olas/m cresta    st  aud dB
-     objetivo      −4..−7  <0.25   <0.8   <0.6   8-20   8-16  .2-.7  −26..−18
-     v0 «el bong»    −2.8   0.51   2.55   0.42    8.0   13.6   1.00   −27.3
-     v3 lejano       −5.9   0.05   0.52  −0.00    6.7   13.9   0.51   −27.0
-     v5 granular     −5.1   0.11   0.49   0.00   10.7   13.5   0.49   −22.0  ← ésta
-
-   v5 es la única que cae dentro de las ocho. Verificada además a 48 kHz, que
-   es a lo que abre el navegador de verdad: barrid 0.52, olas 8.0, estéreo 0.50.
-
-   Se sostiene sola: los buffers son toroidales (`loop = true`) y no agenda ni
-   una automatización, así que no hay nada que reprogramar cada cierto tiempo
-   ni costura de bucle que se oiga.
-
-   El arranque, el fundido y el interruptor viven en `mar.js`.
-   La acústica que justifica cada capa, en `sonido/docs/ACUSTICA.md`.
-   ========================================================================== */
-
-/* ============================================================================
    v5 · TEXTURA GRANULAR Y ESPACIO
    ----------------------------------------------------------------------------
    No hay ninguna capa continua: el mar entero está hecho de decenas de miles de
@@ -641,20 +614,3 @@ function construirMar(ctx, dur) {
       una rejilla completa por cada tren y multiplicó el solapamiento en vez de
       reducirlo — 1000 ms de generación en lugar de 387.
    ========================================================================== */
-
-
-/* ── el enganche con el sitio ─────────────────────────────────────────────
-   `mar.js` llama a esto una sola vez, tras el primer gesto del visitante.
-   Se pasa dur = 0 para que la variante NO haga su propio fundido: el de
-   entrada lo gobierna `mar.js`, que es quien sabe si el usuario acaba de
-   llegar o está volviendo de otra pestaña. */
-window.sintetizarMar = function (ctx, salida) {
-  const destinoOriginal = ctx.destination;
-  // la variante se conecta a ctx.destination; se interpone la salida del sitio
-  Object.defineProperty(ctx, 'destination', { value: salida, configurable: true });
-  try {
-    construirMar(ctx, 0);
-  } finally {
-    Object.defineProperty(ctx, 'destination', { value: destinoOriginal, configurable: true });
-  }
-};
