@@ -35,7 +35,8 @@ riverside-web/
 │   │   ├── base.css             reset + tipografía del documento + botones
 │   │   └── sitio.css            composición de cada sección
 │   ├── js/
-│   │   ├── corriente.js         🏠 la animación firma (ver abajo)
+│   │   ├── marea.js             🏠 la animación firma (ver abajo)
+│   │   ├── mar.js               🏠 el sonido, sintetizado con Web Audio
 │   │   └── sitio.js             nav que se posa · aparición al entrar · año del pie
 │   └── img/                     avif + webp + jpg de respaldo, generados
 │
@@ -47,6 +48,8 @@ riverside-web/
 │
 ├── scripts/
 │   ├── imagenes.py              origen/assets → codigo-puro/img (idempotente)
+│   ├── servir.py                servidor local CONCURRENTE (el de un hilo se atasca)
+│   ├── esperar-https.sh         vigila el certificado y fuerza HTTPS al emitirse
 │   └── publicar.sh              ★ el único comando de despliegue
 │
 ├── docs/DOMINIO-Y-DNS.md        qué registro se toca y cuál mataría el correo
@@ -63,26 +66,37 @@ Antes de crear algo, mira si ya vive aquí.
 | Azul de marca **para texto o fondo de botón** | `--marca-legible` (`#0d66aa`) | `--marca` (`#1080d0`): es la identidad, y con blanco encima da 4.18:1 — por debajo de AA |
 | Estilo de botón | `css/base.css` (`.boton` + modificadores) | un botón nuevo desde cero |
 | Un tipo de sección | `css/sitio.css` | duplicar la retícula |
-| La animación firma | `js/corriente.js` | una segunda librería de scroll |
+| La animación firma | `js/marea.js` | una segunda librería de scroll |
+| El sonido | `js/mar.js` (Web Audio, sintetizado) | meter un mp3 de olas: se desincroniza de lo que se ve |
 | Reveal al entrar en cuadro | `js/sitio.js` (`[data-sube]`) | otro IntersectionObserver |
 | Procesar una imagen nueva | `scripts/imagenes.py` (añádela al dict `PLAN`) | meter un jpg a pelo en `img/` |
 | Publicar | `scripts/publicar.sh` | `git push` a mano |
 | El original de una foto | `origen/assets/` | volver a bajarla del WordPress |
 
-## 🌊 La animación firma (lo que hace distinto a este sitio)
+## 🌊 LA MAREA (lo que hace distinto a este sitio)
 
-El logo es una **gota triangular con una ola enroscada** cuya cresta escapa en dos trazos
-horizontales. Esos trazos son el río. `corriente.js` los desenrosca: calcula un path Bézier a
-partir de la posición **real** de cada título marcado `data-moja`, y lo va dibujando conforme
-bajas (`stroke-dashoffset` ligado al scroll, con inercia). Una gota viaja sobre el trazo, y cada
-título que el agua toca se queda con una marca de agua debajo, para siempre.
+**Lo dictó Sergio, y su lectura del logo es la clave:** el triángulo son los techos de dos aguas
+que corona TODOS los espacios del lugar (el hotel, las cabañas, la palapa), y el trazo de abajo
+es el agua que los rodea. El logo es literalmente el negocio.
+
+`marea.js` toma **un segmento de ese trazo**, lo desprende del logo (`[data-nace]`), lo hace
+bajar con el usuario tiñéndose de espuma blanca al azul de marca, y con él **empuja una marea**:
+siete láminas de azul casi transparente que suben hasta donde va leyendo.
 
 **Reglas de esa animación (son gates, no gustos):**
-- El agua **no rebota** — no hay `bounce` ni `elastic` en ninguna curva del sitio.
-- El agua corre **por debajo** del contenido. Si asoma sobre una foto, es un defecto.
-  Por eso `.estancias` y `.cerca` tienen suelo opaco.
-- Lo que ya se mojó **se queda mojado** al subir. El agua no se despinta.
-- Con `prefers-reduced-motion` el SVG se oculta y todos los títulos nacen ya subrayados.
+- **`swash()` es asimétrica**: 22 % subiendo (rápido) y 78 % retirándose (lento). Es lo que
+  separa «mar» de «gelatina». Volverla simétrica mata el efecto entero.
+- El borde de cada lámina es un **patrón de interferencia**: tres senos de longitud
+  inconmensurable (razones irracionales) + una deriva lenta. Nunca se repite igual. Si alguien
+  «redondea» esas longitudes a números bonitos, el patrón empieza a repetirse y se nota.
+- **Cada lámina se degrada hacia atrás** (`ALCANCE`). Sin eso, siete capas llenando hasta arriba
+  acumulan un azul sólido que se come el texto.
+- El agua **no rebota**: no hay `bounce` ni `elastic` en ninguna curva del sitio.
+- La marea va **por debajo** del contenido (`z-index`). Si asoma sobre una foto, es un defecto.
+- El **sonido** (`mar.js`) lo modula la MISMA ola que se ve, vía `RiversideMar.pulso()`. No es un
+  archivo: es ruido rosa filtrado. Y **nunca arranca solo**.
+- Con `prefers-reduced-motion` la marea se congela en una imagen quieta y agradable.
+- Medido: **106 FPS** con scroll continuo, canvas 1440×900.
 
 ## ⚠️ Trampas
 

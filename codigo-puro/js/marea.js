@@ -274,7 +274,17 @@
     }
     medir();
     mirar();
-    frente = frenteObjetivo;   // al cargar, el agua ya está donde toca
+    /* El agua NACE en el logo, no en cualquier parte: el trazo de abajo del
+       logotipo es literalmente de donde se desprende el segmento. Al cargar,
+       el frente arranca ahí y de inmediato empieza a perseguir la mirada, así
+       que el primer movimiento que se ve es el agua saliendo de la marca. */
+    const marca = document.querySelector('[data-nace]');
+    if (marca) {
+      const r = marca.getBoundingClientRect();
+      frente = r.top + window.scrollY + r.height * 0.80;
+    } else {
+      frente = frenteObjetivo;
+    }
     arrancar();
   }
 
